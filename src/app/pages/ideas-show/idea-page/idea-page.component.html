@@ -1,0 +1,277 @@
+<!-- <nz-back-top [nzTemplate]="tpl" [nzVisibilityHeight]="100" (nzOnClick)="notify()">
+  <ng-template #tpl>
+    <div class="ant-back-top-inner">UP</div>
+  </ng-template>
+</nz-back-top> -->
+<div class="parts">
+  <form class="col-24" nz-form role="form" [formGroup]="topForm">
+    <!-- row 1 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="4"></div>
+      <!-- 2 -->
+      <div nz-col nzSpan="4">
+        <div class="member-box " style="margin-top: 10px;">احمد صفوی</div>
+      </div>
+      <!-- 3 -->
+      <div nz-col nzSpan="10"></div>
+      <div nz-col nzSpan="4">
+        <div class="score-board"><span>تعداد آرا </span> : <span>25</span></div>
+      </div>
+    </div>
+    <!-- row 1 -->
+    <div nz-row [nzGutter]="4">
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="title">
+            عنوان
+          </nz-form-label>
+          <nz-form-control [nzSm]="10" [nzXs]="24">
+            <input [disabled]="true" nz-input formControlName="title" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <!-- row 2 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="current_situation">وضعیت فعلی</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <textarea
+              [disabled]="true"
+              nz-input
+              formControlName="current_situation"
+              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <!-- row 3 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="prerequisite">پیش نیاز ها</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <textarea
+              [disabled]="true"
+              nz-input
+              formControlName="prerequisite"
+              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <!-- row 5 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="steps">مراحل اجرا</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <textarea
+              [disabled]="true"
+              nz-input
+              formControlName="steps"
+              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <!-- row 5 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="advantages">منافع حاصله</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <textarea
+              [disabled]="true"
+              nz-input
+              formControlName="advantages"
+              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <!-- row 6 -->
+    <!-- row 6 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="4"></div>
+      <!-- 5 -->
+      <div nz-col nzSpan="3">
+        <a class="mybuttons" nz-button style="background-color: darkorange ">ارسال پیشنهاد</a>
+      </div>
+      <!-- 1 -->
+      <div nz-col nzSpan="3"></div>
+      <!-- 2 -->
+      <div nz-col nzSpan="2">
+        <a class="mybuttons" nz-button style="background-color: olive;">رای مثبت</a>
+      </div>
+      <!-- 3 -->
+      <div nz-col nzSpan="2">
+        <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- comment 1 -->
+<div class="parts">
+  <form class="col-24" nz-form role="form" [formGroup]="topForm">
+    <!-- row 1 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="4"></div>
+      <!-- 2 -->
+      <div nz-col nzSpan="4">
+        <div class="member-box " style="margin-top: 10px;">محمد مظفری</div>
+      </div>
+      <!-- 3 -->
+      <div nz-col nzSpan="10"></div>
+      <div nz-col nzSpan="4">
+        <div class="score-board"><span>تعداد آرا </span> : <span>3</span></div>
+      </div>
+    </div>
+    <!-- row 2 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="current_situation">شرح</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <textarea
+              [disabled]="true"
+              nz-input
+              formControlName="current_situation"
+              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <!-- row 6 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="10"></div>
+      <!-- 2 -->
+      <div nz-col nzSpan="2">
+        <a class="mybuttons" nz-button style="background-color: olive;">رای مثبت</a>
+      </div>
+      <!-- 3 -->
+      <div nz-col nzSpan="2">
+        <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- comment 2 -->
+<div class="parts">
+  <form class="col-24" nz-form role="form" [formGroup]="topForm">
+    <!-- row 1 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="4"></div>
+      <!-- 2 -->
+      <div nz-col nzSpan="4">
+        <div class="member-box " style="margin-top: 10px;">حامد مولایی</div>
+      </div>
+      <!-- 3 -->
+      <div nz-col nzSpan="10"></div>
+      <div nz-col nzSpan="4">
+        <div class="score-board"><span>تعداد آرا </span> : <span>1</span></div>
+      </div>
+    </div>
+    <!-- row 2 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="current_situation">شرح</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <textarea
+              [disabled]="true"
+              nz-input
+              formControlName="current_situation"
+              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <!-- row 6 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="10"></div>
+      <!-- 2 -->
+      <div nz-col nzSpan="2">
+        <a class="mybuttons" nz-button style="background-color: olive;">رای مثبت</a>
+      </div>
+      <!-- 3 -->
+      <div nz-col nzSpan="2">
+        <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- comment 1 -->
+<div class="parts">
+  <form class="col-24" nz-form role="form" [formGroup]="topForm">
+    <!-- row 1 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="4"></div>
+      <!-- 2 -->
+      <div nz-col nzSpan="4">
+        <div class="member-box " style="margin-top: 10px;">تقی تقوی</div>
+      </div>
+      <!-- 3 -->
+      <div nz-col nzSpan="10"></div>
+      <div nz-col nzSpan="4">
+        <div class="score-board"><span>تعداد آرا </span> : <span>-5</span></div>
+      </div>
+    </div>
+    <!-- row 2 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="current_situation">شرح</nz-form-label>
+          <nz-form-control [nzSm]="18" [nzXs]="24">
+            <textarea
+              [disabled]="true"
+              nz-input
+              formControlName="current_situation"
+              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+            ></textarea>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <!-- row 6 -->
+    <div nz-row [nzGutter]="4">
+      <!-- 1 -->
+      <div nz-col nzSpan="10"></div>
+      <!-- 2 -->
+      <div nz-col nzSpan="2">
+        <a class="mybuttons" nz-button style="background-color: olive;">رای مثبت</a>
+      </div>
+      <!-- 3 -->
+      <div nz-col nzSpan="2">
+        <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
+      </div>
+    </div>
+  </form>
+</div>

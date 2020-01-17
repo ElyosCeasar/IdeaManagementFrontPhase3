@@ -1,0 +1,157 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    td,th {
+        white-space: nowrap;
+        padding: 8px 10px;
+        vertical-align: center;
+    }
+    td {
+        text-align: justify;
+    }
+    th {
+        text-align: center;
+        font-weight: bold;
+        color: #696969;
+    }
+    &.bordered {
+        tr {border-bottom: 1px solid #e8e8e8;}
+        tbody {
+            td {
+                border-left: 1px solid #e8e8e8;
+                border-right: 1px solid #e8e8e8;
+            }
+            td:first-child {
+                border-left: none;
+            }
+            td:last-child {
+                border-right: none;
+            }  
+        }
+        thead {
+            th {
+                border-left: 1px solid #dddddd;
+                border-right: 1px solid #dddddd;
+            }
+            th:first-child {
+                border-left: none;
+            }
+            th:last-child {
+                border-right: none;
+            }
+        }
+    }
+    &.striped {
+        thead {
+            background-color: #f6f6f6;
+            th {
+                color: #696969;
+            }
+        }
+        tbody:nth-child(2n)>tr:nth-child(2n) {background-color:#fff}
+        tbody:nth-child(2n)>tr:nth-child(2n+1) {background-color: #f6f6f6}
+        tbody:nth-child(2n+1)>tr:nth-child(2n) {background-color:#f6f6f6}
+        tbody:nth-child(2n+1)>tr:nth-child(2n+1) {background-color: #fff}
+    }
+    &.hover {
+        tbody {
+            tr {
+                transition: background-color 50ms ease;
+                &:hover {
+                    background-color: rgba(159, 159, 159, 0.2) !important;
+                }
+            }
+        }
+    }
+    thead {
+        font-size: 85%;
+        tr {
+            height: 45px;
+            border-bottom: 2px solid #e8e8e8 !important;
+        }
+        th {
+            text-align: center;
+        }
+    }
+    tbody {
+        color: #5f5f5f;
+        font-size: 80%;
+        tr {
+            height: 35px;
+        }
+    }
+    @each $color in $colors {
+        $name: nth($color,1);
+        $value: nth($color,2);
+        $forecolor: nth($color,3);
+        &.#{$name}-dark {
+            &.bordered {
+                thead {
+                    th {
+                        //border-left: 1px solid darken($value,15%);
+                        //border-right: 1px solid darken($value,15%);
+                        background-color: darken($value,5%);
+                         color: $forecolor;
+                    }
+                }
+              tbody {
+                tr {border-bottom: 1px solid darken($value,15%); border-top: 1px solid darken($value,15%);}
+                td {
+                  border-left: 1px solid darken($value,15%);
+                  border-right: 1px solid darken($value,15%);
+                }
+                td:first-child {
+                  border-left: none;
+                }
+                td:last-child {
+                  border-right: none;
+                }
+              }
+            }
+            &.striped {
+                thead { 
+                    background-color: darken($value,10%) !important; 
+                    th {
+                        color: $forecolor;
+                    }
+                }
+            }
+        }
+        &.#{$name} {
+            &.bordered {
+                thead {
+                    th {
+                        border-left: 1px solid darken($value,5%);
+                        border-right: 1px solid darken($value,5%);
+                    }
+                }
+            }
+            &.striped {
+                thead { 
+                    background-color: $value !important; 
+                    th {
+                        color: $forecolor;
+                    }
+                }
+            }
+        }
+        &.#{$name}-light {
+            &.bordered {
+                thead {
+                    th {
+                        border-left: 1px solid lighten($value,5%);
+                        border-right: 1px solid lighten($value,5%);
+                    }
+                }
+            }
+            &.striped {
+                thead {
+                    background-color: lighten($value,10%) !important;
+                    th {
+                        color: $forecolor;
+                    }
+                }
+            }
+        }
+    }
+}

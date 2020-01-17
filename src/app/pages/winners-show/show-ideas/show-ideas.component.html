@@ -1,0 +1,105 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="جزئیات ایده"
+  nzWidth="1000"
+  (nzOnCancel)="handleClose()"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+>
+  <ng-template #modalContent>
+    <form class="col-24" nz-form role="form" [formGroup]="topForm">
+      <!-- row 1 -->
+      <div nz-row [nzGutter]="4">
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="title">
+              عنوان
+            </nz-form-label>
+            <nz-form-control [nzSm]="10" [nzXs]="24">
+              <input [disabled]="true" nz-input formControlName="title" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <!-- row 2 -->
+      <div nz-row [nzGutter]="4">
+        <!-- 1 -->
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="current_situation"
+              >وضعیت فعلی</nz-form-label
+            >
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <textarea
+                [disabled]="true"
+                nz-input
+                formControlName="current_situation"
+                [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <!-- row 3 -->
+      <div nz-row [nzGutter]="4">
+        <!-- 1 -->
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="prerequisite">پیش نیاز ها</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <textarea
+                [disabled]="true"
+                nz-input
+                formControlName="prerequisite"
+                [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <!-- row 5 -->
+      <div nz-row [nzGutter]="4">
+        <!-- 1 -->
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="steps">مراحل اجرا</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <textarea
+                [disabled]="true"
+                nz-input
+                formControlName="steps"
+                [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <!-- row 5 -->
+      <div nz-row [nzGutter]="4">
+        <!-- 1 -->
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="advantages">منافع حاصله</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <textarea
+                [disabled]="true"
+                nz-input
+                formControlName="advantages"
+                [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzType="primary" (click)="handleClose()">بستن</button>
+    <button nz-button nzType="difault" (click)="handleShowComments()" *ngIf="showingComments === true">
+      پنهان کردن کامنت ها
+    </button>
+    <button nz-button nzType="difault" (click)="handleShowComments()" *ngIf="showingComments === false">
+      دیدن کامنت ها
+    </button>
+  </ng-template>
+</nz-modal>

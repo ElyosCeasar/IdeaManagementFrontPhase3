@@ -1,0 +1,97 @@
+@charset "UTF-8";
+$screens: (
+    ('xxs',0),
+    ('xs',544px),
+    ('sm',768px),
+    ('md',992px),
+    ('lg',1300px),
+    ('xl',1600px),
+    ('xxl',1900px)
+);
+//$red:  #F44336;
+
+$pink:  #e91e63;
+
+$purple: #9c27b0;
+
+$deep-purple:#673ab7;
+
+$indigo: #3f51b5;
+
+$blue:  #2196F3;
+
+$light-blue: #03a9f4;
+
+$cyan: #00bcd4;
+
+$teal:   #009688;
+
+$green: #4CAF50;
+
+$light-green: #8bc34a;
+
+$lime:   #cddc39;
+
+$yellow: #ffeb3b;
+
+$amber: #ffc107;
+
+$orange:#ff9800;
+
+$deep-orange: #ff5722;
+
+$brown: #795548;
+
+$blue-grey:  #607d8b;
+
+$grey: #9e9e9e;
+
+
+
+
+//$yellow: #f0ad4e;
+//$orange: #e57d21;
+$red: #da5546;
+$turquise: #41c1a8;
+$green: #4fc782;
+$sky: #5bc0de;
+$blue: #4399e2;
+$violet: #945cab;
+$black: #33485d;
+$gray: #849495;
+$white: #fff;
+
+$colors: (
+
+
+    ("turquise",$turquise,#fff),
+
+    ("sky",$sky,#fff),
+
+    ("violet",$violet,#fff),
+    ("black",$black,#fff),
+    ("gray",$gray,#fff),
+    ("white",$white,#757575),
+
+    ("red", red,#fff),
+    ("pink", $pink,#757575),
+    ("purple", $purple,#fff),
+    ("deep-purple", $deep-purple,#fff),
+    ("indigo", $indigo,#fff),
+    ("blue", $blue,#fff),
+    ("light-blue", $light-blue,#fff),
+    ("indigo", $indigo,#fff),
+    ("cyan", $cyan,#fff),
+    ("teal", $teal,#fff),
+    ("green", $green,#fff),
+    ("light-green", $light-green,#fff),
+    ("lime", $lime,#fff),
+    ("yellow", $yellow, #717171),
+    ("amber", $amber,#fff),
+    ("orange", $orange,#fff),
+    ("deep-orange", $deep-orange,#fff),
+    ("blue-grey", $blue-grey,#fff),
+    ("grey", $grey,#fff),
+    ("brown", $brown,#fff),
+
+);

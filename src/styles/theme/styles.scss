@@ -1,0 +1,226 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "./variables";
+@import "./typography.scss";
+@import "./progress.scss";
+@import "./dropdown.scss";
+@import "./form.scss";
+@import "./button.scss";
+@import "./responsive.scss";
+@import "./table.scss";
+@import "./pagination.scss";
+@import "./alert.scss";
+@import "./tab.scss";
+@import "./card.scss";
+@import "./badge.scss";
+@import "./animation.scss";
+@import "./helper.scss";
+
+body {
+  background-color: #f6f6f6;
+}
+section {
+  display: flex;
+}
+nz-table {
+  background-color: #fff;
+}
+thead tr th {
+  background-color: #1890ff !important;
+  font-weight: normal;
+  height: 32px;
+  border-color: #0f7be0 !important;
+  color: #fff !important;
+}
+input[readonly] {
+  background-color: #f5f5f5;
+}
+.rtl {
+  [class*='ant-col-'] {
+    float: right;
+  }
+  .alain-default__aside {
+    background-color: #e8e8e8;
+  }
+  .timeCont {
+    width: 90%;
+    padding: 5px 16px;
+    text-align: center;
+    background-color: #1890ff;
+    border-radius: 16px;
+    color: #fff;
+    margin: 10px auto 0;
+    font-size: 16px;
+  }
+  /*  .d-block,
+  p,
+  header-task {
+    text-align: right;
+  } */
+  .d-block,
+  header-task {
+    text-align: right;
+  }
+
+  /* .alain-default__header-logo {
+    width: 184px;
+  } */
+  .alain-default__header-logo-link {
+    text-align: right;
+  }
+  .alain-default__aside-user {
+    margin: 24px 8px 0 24px;
+  }
+  .alain-default__content {
+    margin-right: 224px;
+    margin-left: 20px;
+  }
+  .alain-default__content router-outlet+* {
+    width: 100%;
+  }
+  .alain-default__fixed .alain-default__content {
+    margin-top: 84px;
+  }
+  .mr-sm {
+    margin-right: 0;
+    margin-left: 8px !important;
+  }
+  .ant-list-item-meta-avatar {
+    margin-right: 0;
+    margin-left: 16px !important;
+  }
+  .sidebar-nav__open > .sidebar-nav__sub {
+    background-color: #fff;
+  }
+  .alain-default__aside-user-avatar {
+    margin-right: 0;
+    margin-left: 16px !important;
+  }
+  .sidebar-nav__item-icon {
+    margin-right: 0;
+    margin-left: 8px !important;
+  }
+  .alain-default__collapsed {
+    .sidebar-nav__item-icon {
+      margin-right: 0;
+      margin-left: 0 !important;
+    }
+  }
+  .sidebar-nav__sub-arrow {
+    right: initial;
+    left: 8px !important;
+  }
+  .ant-form-item {
+    margin-bottom: 10px;
+  }
+  .ant-form-item-label {
+    text-align: left;
+    padding-left: 5px;
+  }
+  .ant-input-group > .ant-input:first-child,
+  .ant-input-group-addon:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 0;
+  }
+  .ant-input-group > .ant-input:last-child,
+  .ant-input-group-addon:last-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 4px;
+  }
+  .ant-dropdown-menu {
+    text-align: right;
+  }
+  .app-icons img {
+    width: 64px;
+  }
+  .ant-table-body {
+    background-color: #fff;
+  }
+  .ant-table-bordered td, .ant-table-bordered th {
+    border: 1px solid #dcdcdc;
+  }
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    text-align: right;
+    padding: 8px 16px;
+  }
+  .ant-table-thead > tr > th p,
+  .ant-table-tbody > tr > td p {
+    margin-bottom: 0;
+  }
+  .ant-empty-description {
+    text-align: center;
+  }
+  .ant-pagination-item {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  .ant-pagination-prev,
+  .ant-pagination-jump-prev,
+  .ant-pagination-jump-next {
+    margin-left: 8px;
+    margin-right: 0;
+  }
+  .ant-modal-close {
+    left: 0;
+    right: initial;
+  }
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    transform: rotate(180deg);
+  }
+  .ant-upload-list-item-info .anticon-loading,
+  .ant-upload-list-item-info .anticon-paper-clip {
+    left: 0;
+  }
+  .alain-default__search .ant-input,
+  .alain-default__search .ant-input-group-addon {
+    border: none;
+  }
+  .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    color: #fff !important;
+  }
+  nz-collapse-panel {
+    background-color: #515b65 !important;
+  }
+  form .ant-select {
+    margin-right: 0;
+  }
+  .ant-select-selection__placeholder,
+  .ant-select-search__field__placeholder {
+    text-align: right;
+  }
+  .ant-select-dropdown-menu {
+    padding-right: 0;
+  }
+  .ant-select-arrow {
+    left: 11px;
+    right: initial;
+  }
+  nz-select {
+    width: 100% !important;
+  }
+  .ant-select-selection-selected-value {
+    float: right;
+  }
+  .ant-btn {
+    margin-left: 8px;
+    margin-right: initial;
+  }
+  nz-table .ant-table table {
+    border-collapse: collapse !important;
+  }
+}
+
+.ant-table-thead > tr:first-child > th {border-radius: 0 !important;}
+
+[nz-input] {
+  width: 100%;
+  padding: 2px !important;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}

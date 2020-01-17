@@ -1,0 +1,73 @@
+<h2>طرح ایده ی جدید</h2>
+
+<form class="col-24" nz-form role="form" [formGroup]="topForm">
+  <!-- row 1 -->
+  <div nz-row [nzGutter]="4">
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="title">
+          عنوان
+        </nz-form-label>
+        <nz-form-control [nzSm]="10" [nzXs]="24">
+          <input nz-input formControlName="title" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <!-- row 2 -->
+  <div nz-row [nzGutter]="4">
+    <!-- 1 -->
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="current_situation">وضعیت فعلی</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24">
+          <textarea nz-input formControlName="current_situation" [nzAutosize]="{ minRows: 5, maxRows: 12 }"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <!-- row 3 -->
+  <div nz-row [nzGutter]="4">
+    <!-- 1 -->
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="prerequisite">پیش نیاز ها</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24">
+          <textarea nz-input formControlName="prerequisite" [nzAutosize]="{ minRows: 5, maxRows: 12 }"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <!-- row 5 -->
+  <div nz-row [nzGutter]="4">
+    <!-- 1 -->
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="steps">مراحل اجرا</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24">
+          <textarea nz-input formControlName="steps" [nzAutosize]="{ minRows: 5, maxRows: 12 }"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <!-- row 5 -->
+  <div nz-row [nzGutter]="4">
+    <!-- 1 -->
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="advantages">منافع حاصله</nz-form-label>
+        <nz-form-control [nzSm]="18" [nzXs]="24">
+          <textarea nz-input formControlName="advantages" [nzAutosize]="{ minRows: 5, maxRows: 12 }"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <!-- | -->
+  <div nz-col nzSpan="3" style="padding-right: 10%">
+    <button nz-button nzType="primary">
+      ثبت
+    </button>
+  </div>
+</form>
+<br />

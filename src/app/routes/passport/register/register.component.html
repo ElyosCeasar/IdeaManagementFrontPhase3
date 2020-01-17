@@ -1,0 +1,100 @@
+<form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form">
+  <h3>
+    <span class="underline">
+      {{ 'app.register.register' | translate }}
+    </span>
+  </h3>
+  <nz-alert *ngIf="error" [nzType]="'error'" [nzMessage]="error" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="nameErrorTip">
+      <nz-input-group nzSize="large" nzAddonBeforeIcon="user">
+        <input nz-input formControlName="name" placeholder="نام" />
+      </nz-input-group>
+      <ng-template #nameErrorTip let-i>
+        <ng-container *ngIf="i.errors?.required">ورود نام اجباری است</ng-container>
+        <ng-container *ngIf="i.errors && !i.errors?.required"> نام مجاز بیش از 3 حرف دارد</ng-container>
+
+        <!-- <ng-container *ngIf="i.errors?.email">{{ 'validation.email.wrong-format' | translate }}</ng-container> -->
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="familyNameErrorTip">
+      <nz-input-group nzSize="large" nzAddonBeforeIcon="user">
+        <input nz-input formControlName="family_name" placeholder="نام‌خانوادگی" />
+      </nz-input-group>
+      <ng-template #familyNameErrorTip let-i>
+        <ng-container *ngIf="i.errors?.required">ورود نام‌خانوادگی اجباری است</ng-container>
+        <ng-container *ngIf="i.errors && !i.errors?.required"> نام‌خانوادگی مجاز بیش از 3 حرف دارد</ng-container>
+        <!-- <ng-container *ngIf="i.errors?.email">{{ 'validation.email.wrong-format' | translate }}</ng-container> -->
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="mailErrorTip">
+      <nz-input-group nzSize="large" nzAddonBeforeIcon="user">
+        <input nz-input formControlName="mail" placeholder="ایمیل" />
+      </nz-input-group>
+      <ng-template #mailErrorTip let-i>
+        <ng-container *ngIf="i.errors?.required">{{ 'validation.email.required' | translate }}</ng-container>
+        <ng-container *ngIf="i.errors?.email">{{ 'validation.email.wrong-format' | translate }}</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="'validation.password.required' | translate">
+      <nz-popover
+        [nzPlacement]="'right'"
+        [nzTrigger]="'focus'"
+        [(nzVisible)]="visible"
+        nzOverlayClassName="register-password-cdk"
+        [nzOverlayStyle]="{ 'width.px': 240 }"
+      >
+        <nz-input-group nzSize="large" nz-popover nzAddonBeforeIcon="lock">
+          <input nz-input type="password" formControlName="password" placeholder="کلمه‌ی عبور" />
+        </nz-input-group>
+        <ng-template #nzTemplate>
+          <div style="padding: 4px 0;">
+            <ng-container [ngSwitch]="status">
+              <div *ngSwitchCase="'ok'" class="success">
+                {{ 'validation.password.strength.strong' | translate }}
+              </div>
+              <div *ngSwitchCase="'pass'" class="warning">
+                {{ 'validation.password.strength.medium' | translate }}
+              </div>
+              <div *ngSwitchDefault class="error">{{ 'validation.password.strength.short' | translate }}</div>
+            </ng-container>
+            <div class="progress-{{ status }}">
+              <nz-progress
+                [nzPercent]="progress"
+                [nzStatus]="passwordProgressMap[status]"
+                [nzStrokeWidth]="6"
+                [nzShowInfo]="false"
+              ></nz-progress>
+            </div>
+            <p class="mt-sm">{{ 'validation.password.strength.msg' | translate }}</p>
+          </div>
+        </ng-template>
+      </nz-popover>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="confirmErrorTip">
+      <nz-input-group nzSize="large" nzAddonBeforeIcon="lock">
+        <input nz-input type="password" formControlName="confirm" placeholder="تکرار کلمه‌ی عبور" />
+      </nz-input-group>
+      <ng-template #confirmErrorTip let-i>
+        <ng-container *ngIf="i.errors?.required">{{ 'validation.confirm-password.required' | translate }}</ng-container>
+        <ng-container *ngIf="i.errors?.equar">{{ 'validation.password.twice' | translate }}</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <button nz-button nzType="primary" nzSize="large" type="submit" [nzLoading]="http.loading" class="submit">
+      {{ 'app.register.register' | translate }}
+    </button>
+    <a class="login" routerLink="/passport/login">{{ 'app.register.sign-in' | translate }}</a>
+  </nz-form-item>
+</form>

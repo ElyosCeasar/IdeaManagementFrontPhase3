@@ -1,0 +1,107 @@
+<h2>مدیریت اعضای کمیته</h2>
+
+<form class="col-24" nz-form [formGroup]="topForm" role="form" (ngSubmit)="submit()">
+  <!-- row 1 -->
+  <div nz-row [nzGutter]="4">
+    <!-- 1 -->
+    <div nz-col nzSpan="8">
+      <nz-form-item>
+        <nz-form-label
+          class="rtlm"
+          [nzXXl]="6"
+          [nzXl]="8"
+          [nzLg]="9"
+          [nzMd]="13"
+          [nzSm]="14"
+          [nzXs]="24"
+          [nzRequired]="false"
+          nzFor="full_name"
+          >نام و نام خانوادگی</nz-form-label
+        >
+        <nz-form-control [nzXXl]="17" [nzXl]="15" [nzLg]="14" [nzMd]="11" [nzSm]="10" [nzXs]="24">
+          <input nz-input formControlName="full_name" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <!-- 2 -->
+    <div nz-col nzSpan="8">
+      <nz-form-item>
+        <nz-form-label
+          class="rtlm"
+          [nzXXl]="4"
+          [nzXl]="5"
+          [nzLg]="7"
+          [nzMd]="9"
+          [nzSm]="13"
+          [nzXs]="24"
+          [nzRequired]="false"
+          >نام کاربری</nz-form-label
+        >
+        <nz-form-control [nzXXl]="19" [nzXl]="18" [nzLg]="16" [nzMd]="14" [nzSm]="10" [nzXs]="24">
+          <input nz-input formControlName="username" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <!-- 3-->
+    <div nz-col nzSpan="5">
+      <nz-form-item>
+        <nz-form-label
+          class="rtlm"
+          [nzXXl]="4"
+          [nzXl]="5"
+          [nzLg]="7"
+          [nzMd]="9"
+          [nzSm]="12"
+          [nzXs]="24"
+          [nzRequired]="false"
+          nzRequired
+          nzFor="position_type"
+          >نقش</nz-form-label
+        >
+        <nz-form-control [nzXXl]="19" [nzXl]="18" [nzLg]="16" [nzMd]="15" [nzSm]="12" [nzXs]="24">
+          <nz-select style="width: 200px;" formControlName="position_type" nzShowSearch>
+            <nz-option nzLabel="عضو کمیته" [nzValue]="1"></nz-option>
+            <nz-option nzLabel="کاربر معمولی" [nzValue]="0"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <!-- 4 -->
+    <div nz-col nzSpan="3">
+      <button nz-button nzType="primary">جست و جو</button>
+    </div>
+  </div>
+</form>
+
+<!-- table grid 1-->
+<nz-table nzBordered [nzPageSize]="10">
+  <thead>
+    <tr>
+      <th nzWidth="7%">#</th>
+      <th nzWidth="30%">نام و نام خانوادگی</th>
+      <th nzWidth="20%">نام کاربری</th>
+      <th nzWidth="15%">سمت</th>
+      <th nzWidth="28%">عملیات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- 1 -->
+    <tr>
+      <td>1</td>
+      <td>احمد احمدی</td>
+      <td>ahmad55</td>
+      <td>عضو کمیته</td>
+      <td>
+        <button nz-button style="color: white;background-color: red;">تبدیل به کاربر معمولی</button>
+      </td>
+    </tr>
+    <!-- 2 -->
+    <tr>
+      <td>2</td>
+      <td>محمد موسوی</td>
+      <td>m_mosavi</td>
+      <td>کاربر معمولی</td>
+      <td><button nz-button style="color: black;background-color: greenyellow;">تبدیل به عضو کمیته</button></td>
+    </tr>
+  </tbody>
+</nz-table>

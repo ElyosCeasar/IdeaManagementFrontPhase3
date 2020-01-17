@@ -1,0 +1,23 @@
+.creactionContainer {
+  position: fixed;
+  right: 200px;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 200px);
+  padding: 10px 20px;
+  background-color: #e8e8e8;
+  transition: 0.2s;
+  &.collapsed {
+    right: 64px;
+    justify-content: space-between;
+    width: calc(100% - 64px);
+  }
+  .creationRow {
+    display: flex;
+    .title {
+      margin-left: 16px;
+    }
+  }
+}

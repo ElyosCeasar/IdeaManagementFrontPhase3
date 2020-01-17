@@ -1,0 +1,91 @@
+{
+  "app": {
+    "name": "Idea Management System",
+    "description": ""
+  },
+  "user": {
+    "name": "مدیر سیستم",
+    "avatar": "./assets/images/avatar.png",
+    "email": "admin@faza.com"
+  },
+  "menu": [
+    {
+      "text": "",
+      "group": false,
+      "i18n": "",
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+          "text": "user-management",
+          "i18n": "menu.user-management",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "manage-committee-member",
+              "link": "/manage-committee-member",
+              "i18n": "menu.user-management.manage-committee-member"
+            }
+          ]
+        },
+        {
+          "text": "tops-section",
+          "i18n": "menu.tops-section",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "tops-section-ideas",
+              "link": "/tops-section/ideas",
+              "i18n": "menu.tops-section.ideas"
+            },
+            {
+              "text": "tops-section-members",
+              "link": "/tops-section/members",
+              "i18n": "menu.tops-section.members"
+            }
+          ]
+        },
+        {
+          "text": "evaluation",
+          "i18n": "menu.evaluation",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "evaluation-ideas",
+              "link": "/evaluation/ideas",
+              "i18n": "menu.evaluation.ideas"
+            }
+          ]
+        },
+        {
+          "text": "menu.winners",
+          "i18n": "menu.winners",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "menu.winners.show",
+              "link": "/winners/show",
+              "i18n": "menu.winners.show"
+            }
+          ]
+        },
+        {
+          "text": "menu.ideas",
+          "i18n": "menu.ideas",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "menu.ideas.show",
+              "link": "/ideas/show",
+              "i18n": "menu.ideas.show"
+            },
+            {
+              "text": "menu.ideas.create",
+              "link": "/ideas/create",
+              "i18n": "menu.ideas.create"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
