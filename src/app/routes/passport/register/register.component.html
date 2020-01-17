@@ -30,7 +30,17 @@
       </ng-template>
     </nz-form-control>
   </nz-form-item>
-
+  <nz-form-item>
+    <nz-form-control [nzErrorTip]="nameErrorTip">
+      <nz-input-group nzSize="large" nzAddonBeforeIcon="user">
+        <input nz-input formControlName="username" placeholder="نام کاربری" />
+      </nz-input-group>
+      <ng-template #nameErrorTip let-i>
+        <ng-container *ngIf="i.errors?.required">ورود نام کاربری اجباری است</ng-container>
+        <ng-container *ngIf="i.errors && !i.errors?.required"> نام کاربری مجاز بیش از 3 حرف دارد</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
   <nz-form-item>
     <nz-form-control [nzErrorTip]="mailErrorTip">
       <nz-input-group nzSize="large" nzAddonBeforeIcon="user">

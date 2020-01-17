@@ -15,6 +15,7 @@ export class UserRegisterComponent implements OnDestroy {
     this.form = fb.group({
       name: [null, [Validators.required, Validators.minLength(3)]],
       family_name: [null, [Validators.required, Validators.minLength(3)]],
+      username: [null, [Validators.required, Validators.minLength(3)]],
       mail: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(6), UserRegisterComponent.checkPassword.bind(this)]],
       confirm: [null, [Validators.required, Validators.minLength(6), UserRegisterComponent.passwordEquar]],
@@ -22,6 +23,9 @@ export class UserRegisterComponent implements OnDestroy {
   }
 
   // #region fields
+  get username() {
+    return this.form.controls.name;
+  }
   get name() {
     return this.form.controls.name;
   }
