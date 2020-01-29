@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SimpleGuard } from '@delon/auth';
+
 import { environment } from '@env/environment';
 // layout
 import { LayoutDefaultComponent } from '../layout/default/default.component';
@@ -9,7 +10,7 @@ import { UserRegisterComponent } from './passport/register/register.component';
 import { UserRegisterResultComponent } from './passport/register-result/register-result.component';
 import { ForgetPasswordComponent } from './passport/forget-password/forget-password.component';
 import { UserGuard } from '../_guards/user-guard';
-
+import { AuthGuard } from '../_guards/auth.guard';
 const routes: Routes = [
   { path: 'passport/login', component: UserLoginComponent },
   { path: 'passport/register', component: UserRegisterComponent },
@@ -18,8 +19,8 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutDefaultComponent,
-    canActivate: [SimpleGuard],
-    canActivateChild: [SimpleGuard],
+    canActivate: [AuthGuard],
+    // canActivateChild: [AuthGuard],
     children: [
       // {
       //   path: 'passport/register',
@@ -32,50 +33,50 @@ const routes: Routes = [
 
           import('../pages/evaluation-ideas/evaluation-ideas.module').then(m => m.EvaluationIdeasModule)
         ,
-        canActivate: [SimpleGuard],
-        canActivateChild: [SimpleGuard],
+        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
       },
       {
         path: 'ideas/create',
         loadChildren: () =>
           import('../pages/ideas-create/ideas-create.module').then(m => m.IdeasCreateModule),
-        canActivate: [SimpleGuard],
-        canActivateChild: [SimpleGuard],
+        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
       },
       {
         path: 'ideas/show',
         loadChildren: () =>
           import('../pages/ideas-show/ideas-show.module').then(m => m.IdeasShowModule),
-        canActivate: [SimpleGuard],
-        canActivateChild: [SimpleGuard],
+        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
       },
       {
         path: 'manage-committee-member',
         loadChildren: () =>
           import('../pages/manage-committee-member/manage-committee-member.module').then(m => m.ManageCommitteeMemberModule),
-        canActivate: [SimpleGuard],
-        canActivateChild: [SimpleGuard],
+        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
       },
       {
         path: 'tops-section/ideas',
         loadChildren: () =>
           import('../pages/tops-section-ideas/tops-section-ideas.module').then(m => m.TopsSectionIdeasModule),
-        canActivate: [SimpleGuard],
-        canActivateChild: [SimpleGuard],
+        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
       },
       {
         path: 'tops-section/members',
         loadChildren: () =>
           import('../pages/tops-section-members/tops-section-members.module').then(m => m.TopsSectionMembersModule),
-        canActivate: [SimpleGuard],
-        canActivateChild: [SimpleGuard],
+        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
       },
       {
         path: 'winners/show',
         loadChildren: () =>
           import('../pages/winners-show/winners-show.module').then(m => m.WinnersShowModule),
-        canActivate: [SimpleGuard],
-        canActivateChild: [SimpleGuard],
+        canActivate: [AuthGuard],
+        // canActivateChild: [AuthGuard],
       },
 
       { path: '**', redirectTo: 'exception/404' },
@@ -86,6 +87,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+
 
 
     RouterModule.forRoot(routes, {

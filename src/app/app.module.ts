@@ -4,6 +4,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AuthService } from './_services/auth.service';
+import { CommentService } from './_services/comment.service';
+import { CommitteeService } from './_services/committee.service';
+import { IdeaService } from './_services/idea.service';
+import { UserService } from './_services/user.service';
 
 // #region default language
 // 参考：https://ng-alain.com/docs/i18n
@@ -94,9 +99,11 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { RoutesModule } from './routes/routes.module';
 import { LayoutModule } from './layout/layout.module';
+import { AlertifyService } from './_services/alertify.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [
+
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -111,7 +118,8 @@ import { LayoutModule } from './layout/layout.module';
   ],
 
   // exports: [ShowIdeasComponent],
-  providers: [...LANG_PROVIDES, ...INTERCEPTOR_PROVIDES, ...I18NSERVICE_PROVIDES, ...APPINIT_PROVIDES],
+  providers: [...LANG_PROVIDES, ...INTERCEPTOR_PROVIDES, ...I18NSERVICE_PROVIDES, ...APPINIT_PROVIDES,
+    AuthService, IdeaService, CommitteeService, UserService, CommentService, AlertifyService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

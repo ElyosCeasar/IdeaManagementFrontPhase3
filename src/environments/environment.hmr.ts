@@ -7,6 +7,8 @@ export const environment = {
   production: false,
   useHash: true,
   hmr: true,
+  apiUrl: 'https://localhost:44300/api/',
+  apiUrlserver: 'https://localhost:44300/api/'
 };
 
 /*

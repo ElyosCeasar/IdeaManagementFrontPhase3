@@ -1,5 +1,5 @@
 import { SettingsService, _HttpClient } from '@delon/theme';
-import { Component, OnDestroy, Inject, Optional } from '@angular/core';
+import { Component, OnDestroy, Inject, Optional, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NzMessageService, NzModalService } from 'ng-zorro-antd';
@@ -7,6 +7,8 @@ import { SocialService, SocialOpenType, ITokenService, DA_SERVICE_TOKEN } from '
 import { ReuseTabService } from '@delon/abc';
 import { environment } from '@env/environment';
 import { StartupService } from '@core';
+import { AuthService } from './../../../_services/auth.service';
+import { UserForLoginDto } from './../../../_model/auth/UserForLoginDto';
 
 
 @Component({
@@ -15,7 +17,7 @@ import { StartupService } from '@core';
   styleUrls: ['./login.component.less'],
   providers: [SocialService],
 })
-export class UserLoginComponent implements OnDestroy {
+export class UserLoginComponent implements OnDestroy, OnInit {
 
   constructor(
     fb: FormBuilder,
@@ -30,6 +32,7 @@ export class UserLoginComponent implements OnDestroy {
     private startupSrv: StartupService,
     public http: _HttpClient,
     public msg: NzMessageService,
+    private authService: AuthService,
   ) {
     this.form = fb.group({
       userName: [null, [Validators.required, Validators.minLength(4)]],
@@ -59,6 +62,12 @@ export class UserLoginComponent implements OnDestroy {
 
 
   // #endregion
+  ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      // this.alertify.error('در حال حاظر شما در حالت ورود هستید ودسترسی به این بخش ممکن نیست');
+      this.router.navigateByUrl('');
+    }
+  }
 
   submit() {
     const tempuser = {
@@ -66,49 +75,19 @@ export class UserLoginComponent implements OnDestroy {
       token: "12345"
     }
     this.tokenService.set(tempuser);
-    this.router.navigateByUrl('#/');
-    // this.error = '';
-    // if (this.type === 0) {
-    //   this.userName.markAsDirty();
-    //   this.userName.updateValueAndValidity();
-    //   this.password.markAsDirty();
-    //   this.password.updateValueAndValidity();
-    //   if (this.userName.invalid || this.password.invalid) {
-    //     return;
-    //   }
-    // } else {
-    //   this.mobile.markAsDirty();
-    //   this.mobile.updateValueAndValidity();
-    //   this.captcha.markAsDirty();
-    //   this.captcha.updateValueAndValidity();
-    //   if (this.mobile.invalid || this.captcha.invalid) {
-    //     return;
-    //   }
-    // }
-    // this.http
-    //   .post('/login/account?_allow_anonymous=true', {
-    //     type: this.type,
-    //     userName: this.userName.value,
-    //     password: this.password.value,
-    //   })
-    //   .subscribe((res: any) => {
-    //     if (res.msg !== 'ok') {
-    //       this.error = res.msg;
-    //       return;
-    //     }
+    //
 
-    //     this.reuseTabService.clear();
+    let user = new UserForLoginDto();
+    user.Password = this.password.value;
+    user.Username = this.userName.value;
 
-    //     this.tokenService.set(res.user);
+    this.authService.login(user).subscribe(response => {
+      this.router.navigateByUrl('#/');
 
-    //     this.startupSrv.load().then(() => {
-    //       let url = this.tokenService.referrer!.url || '/';
-    //       if (url.includes('/passport')) {
-    //         url = '/';
-    //       }
-    //       this.router.navigateByUrl('#/');
-    //     });
-    //   });
+    }, error => {
+      console.log("er", error);
+    });
+
   }
   goToForgetPage() {
     this.router.navigateByUrl('/passport/forget-password');

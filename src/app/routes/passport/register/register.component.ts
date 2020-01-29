@@ -1,17 +1,20 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
+import { AuthService } from './../../../_services/auth.service';
+import { UserForRegistrationDto } from './../../../_model/auth/UserForRegistrationDto';
 
 @Component({
   selector: 'passport-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.less'],
 })
-export class UserRegisterComponent implements OnDestroy {
+export class UserRegisterComponent implements OnDestroy, OnInit {
 
-  constructor(fb: FormBuilder, private router: Router, public http: _HttpClient, public msg: NzMessageService) {
+  constructor(fb: FormBuilder, private router: Router, public http: _HttpClient, public msg: NzMessageService,
+    private authService: AuthService) {
     this.form = fb.group({
       name: [null, [Validators.required, Validators.minLength(3)]],
       family_name: [null, [Validators.required, Validators.minLength(3)]],
@@ -21,7 +24,12 @@ export class UserRegisterComponent implements OnDestroy {
       confirm: [null, [Validators.required, Validators.minLength(6), UserRegisterComponent.passwordEquar]],
     });
   }
-
+  ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      // this.alertify.error('در حال حاظر شما در حالت ورود هستید ودسترسی به این بخش ممکن نیست');
+      this.router.navigateByUrl('');
+    }
+  }
   // #region fields
   get username() {
     return this.form.controls.name;
@@ -102,12 +110,22 @@ export class UserRegisterComponent implements OnDestroy {
     }
 
     const data = this.form.value;
-    // this.http.post('/register', data).subscribe(() => {
-    // this.msg.success('عملیات ثبت نام موفقیت آمیز بود')
-    this.router.navigateByUrl('/passport/register-result', {
-      queryParams: { email: data.mail },
+    let user = new UserForRegistrationDto();
+    user.password = this.password.value;
+    user.Username = this.username.value;
+    user.Email = this.mail.value;
+    user.FirstName = this.name.value;
+    user.LastName = this.family_name.value;
+    this.authService.register(user).subscribe(response => {
+
+      this.router.navigateByUrl('/passport/register-result', {
+        queryParams: { email: data.mail },
+      });
+
+    }, error => {
+      console.log("er", error);
     });
-    // });
+
   }
 
   ngOnDestroy(): void {
