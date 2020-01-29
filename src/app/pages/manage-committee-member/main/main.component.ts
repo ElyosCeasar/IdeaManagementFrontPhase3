@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { _HttpClient, ModalHelper } from '@delon/theme';
 import { FormGroup, FormControl } from '@angular/forms';
+import { UserService } from './../../../_services/user.service';
+import { UserForShowDto } from './../../../_model/user/UserForShowDto';
+import { FilterUserRequestDto } from './../../../_model/user/FilterUserRequestDto';
 
 
 @Component({
@@ -16,16 +19,56 @@ export class ManageCommitteeMemberMainComponent implements OnInit {
     position_type: new FormControl(),
 
   });
+  gridData: UserForShowDto[] = [];
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
-  ngOnInit() { }
-
-
-  submit() {
-    console.log(this.topForm);
+  ngOnInit() {
+    this.fillGrid();
+  }
+  fillGrid() {
+    this.userService.getAllUsers().subscribe((data: UserForShowDto[]) => {
+      this.gridData = data;
+    },
+      (err) => {
+        alert('مشکل');
+      });
   }
 
+  submit() {
+    console.log(this.topForm.value);
+    const model = new FilterUserRequestDto();
+    model.FullName = this.topForm.value.full_name;
+    model.RoleValue = this.topForm.value.position_type === null ? -1 : this.topForm.value.position_type;
+    model.Username = this.topForm.value.username;
+    this.userService.FilterSerchingUsers(model).subscribe((data: UserForShowDto[]) => {
+      this.gridData = data;
+    },
+      (err) => {
+        alert('مشکل');
+      });
 
+  }
+
+  changeToCommitte(username: string) {
+    this.userService.changeCommitteFlag(username, 1).subscribe((data) => {
+      console.log("x76", data);
+      this.fillGrid();
+    },
+      (err) => {
+        alert('مشکل');
+      }
+    );
+  }
+  changeToMember(username: string) {
+    this.userService.changeCommitteFlag(username, 0).subscribe((data) => {
+      console.log("x76", data);
+      this.fillGrid();
+    },
+      (err) => {
+        alert('مشکل');
+      }
+    );
+  }
 
 }

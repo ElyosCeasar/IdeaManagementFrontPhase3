@@ -33,8 +33,14 @@ export class AuthService {
                 if (token) {
 
                     localStorage.setItem('token', token);
-                    this.decodedToken = this.jwtHelper.decodeToken(token);
-                    console.log("ssdd", this.decodedToken);
+                    // this.decodedToken = this.jwtHelper.decodeToken(token);
+                    // console.log("ssdd", this.decodedToken);
+                    // console.log("ssdd", token);
+                    const refreshIntervalId = setInterval(() => {
+                        if (this.checkIfTokenIsExpired()) {
+                            this.logOut();
+                        }
+                    }, 10000);
                     // window.location.reload();
                 }
             }));
@@ -65,6 +71,18 @@ export class AuthService {
         } else {
             return '';
         }
+    }
+
+    checkIfTokenIsExpired() {
+        let isExpired = false;
+        const token = localStorage.getItem('token');
+        let decodedToken = this.jwtHelper.decodeToken(token);
+        const secondsSinceEpoch = Math.round(Date.now() / 1000);
+
+        if (decodedToken.exp < secondsSinceEpoch) {
+            isExpired = true;
+        }
+        return isExpired;
     }
     // getId(): string {
     //     const token = localStorage.getItem('token');

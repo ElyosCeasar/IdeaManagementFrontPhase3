@@ -4,6 +4,9 @@ import { map } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserForShowDto } from './../_model/user/UserForShowDto';
+import { UserChangeCommitteeFlagDto } from './../_model/user/UserChangeCommitteeFlagDto';
+import { FilterUserRequestDto } from './../_model/user/FilterUserRequestDto';
 
 
 
@@ -22,6 +25,16 @@ export class UserService {
         }
     }
 
-
-
+    getAllUsers(): Observable<UserForShowDto[]> {
+        return this.http.get<UserForShowDto[]>(this.baseUrl + 'GetAllUsers');
+    }
+    changeCommitteFlag(username: string, value: number) {
+        const model = new UserChangeCommitteeFlagDto();
+        model.Username = username;
+        model.Value = value;
+        return this.http.put(this.baseUrl + 'ChangeCommitteFlags', model);
+    }
+    FilterSerchingUsers(model: FilterUserRequestDto): Observable<UserForShowDto[]> {
+        return this.http.post<UserForShowDto[]>(this.baseUrl + 'FilterSerching', model);
+    }
 }

@@ -74,34 +74,43 @@
 </form>
 
 <!-- table grid 1-->
-<nz-table nzBordered [nzPageSize]="10">
+<nz-table nzBordered [nzPageSize]="10" #editRowTable [nzData]="gridData">
   <thead>
     <tr>
       <th nzWidth="7%">#</th>
       <th nzWidth="30%">نام و نام خانوادگی</th>
       <th nzWidth="20%">نام کاربری</th>
-      <th nzWidth="15%">سمت</th>
-      <th nzWidth="28%">عملیات</th>
+      <th nzWidth="10%">عضو کمیته</th>
+      <th nzWidth="10%">ادمین</th>
+      <th nzWidth="23%">عملیات</th>
     </tr>
   </thead>
   <tbody>
-    <!-- 1 -->
-    <tr>
+    <tr *ngFor="let item of editRowTable.data">
       <td>1</td>
-      <td>احمد احمدی</td>
-      <td>ahmad55</td>
-      <td>عضو کمیته</td>
+      <td>{{ item.FirstName + ' ' }}{{ item.LastName }}</td>
+      <td>{{ item.Username }}</td>
+      <td>{{ item.CommitteFlag === true ? 'بلی' : 'خیر' }}</td>
+      <td>{{ item.AdminFlag === true ? 'بلی' : 'خیر' }}</td>
       <td>
-        <button nz-button style="color: white;background-color: red;">تبدیل به کاربر معمولی</button>
+        <button
+          nz-button
+          style="color: white;background-color: red;"
+          *ngIf="item.CommitteFlag"
+          (click)="changeToMember(item.Username)"
+        >
+          تبدیل به کاربر معمولی
+        </button>
+
+        <button
+          nz-button
+          style="color: black;background-color: greenyellow;"
+          *ngIf="!item.CommitteFlag"
+          (click)="changeToCommitte(item.Username)"
+        >
+          تبدیل به عضو کمیته
+        </button>
       </td>
-    </tr>
-    <!-- 2 -->
-    <tr>
-      <td>2</td>
-      <td>محمد موسوی</td>
-      <td>m_mosavi</td>
-      <td>کاربر معمولی</td>
-      <td><button nz-button style="color: black;background-color: greenyellow;">تبدیل به عضو کمیته</button></td>
     </tr>
   </tbody>
 </nz-table>
