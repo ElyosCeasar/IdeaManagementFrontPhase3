@@ -1,4 +1,4 @@
-export class NewIdea {
+export class NewIdeaDto {
     Username: string;
     Title: string;
     CurrentSituation: string;

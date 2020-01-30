@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { IdeaDto } from './../_model/idea/IdeaDto';
 import { FilterWinnerIdeaRequestDto } from './../_model/idea/FilterWinnerIdeaRequestDto';
 import { WinnerIdeaForShowDto } from './../_model/idea/WinnerIdeaForShowDto';
+import { NewIdeaDto } from './../_model/idea/NewIdeaDto';
+import { IdeaForShowDto } from './../_model/idea/IdeaForShowDto';
+import { FilterIdeaRequestDto } from './../_model/idea/FilterIdeaRequestDto';
 
 
 
@@ -40,5 +43,13 @@ export class IdeaService {
     getYearsFromLastIdea(): Observable<number[]> {
         return this.http.get<number[]>(this.baseUrl + 'GetYearsFromLastIdea');
     }
-
+    sendNewIdea(model: NewIdeaDto) {
+        return this.http.post(this.baseUrl + 'SendNewIdea', model);
+    }
+    getAllIdea(): Observable<IdeaForShowDto[]> {
+        return this.http.get<IdeaForShowDto[]>(this.baseUrl + 'GetAllIdea');
+    }
+    filterSerchingIdea(model: FilterIdeaRequestDto): Observable<IdeaForShowDto[]> {
+        return this.http.post<IdeaForShowDto[]>(this.baseUrl + 'FilterSerchingIdea', model);
+    }
 }

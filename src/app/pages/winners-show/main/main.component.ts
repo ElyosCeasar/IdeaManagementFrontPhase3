@@ -57,7 +57,7 @@ export class WinnersShowMainComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.topForm.value);
+
     const model = new FilterWinnerIdeaRequestDto();
     model.Month = this.topForm.value.month;
     model.Year = this.topForm.value.year;

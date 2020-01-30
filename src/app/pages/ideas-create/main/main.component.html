@@ -1,6 +1,6 @@
-<h2>طرح ایده ی جدید</h2>
+<h2>طرح ایده‌ی جدید</h2>
 
-<form class="col-24" nz-form role="form" [formGroup]="topForm">
+<form class="col-24" nz-form role="form" [formGroup]="topForm" (ngSubmit)="submitForm()">
   <!-- row 1 -->
   <div nz-row [nzGutter]="4">
     <div nz-col nzSpan="24">
@@ -31,7 +31,7 @@
     <!-- 1 -->
     <div nz-col nzSpan="24">
       <nz-form-item>
-        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="prerequisite">پیش نیاز ها</nz-form-label>
+        <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired nzFor="prerequisite">پیش نیاز‌ها</nz-form-label>
         <nz-form-control [nzSm]="18" [nzXs]="24">
           <textarea nz-input formControlName="prerequisite" [nzAutosize]="{ minRows: 5, maxRows: 12 }"></textarea>
         </nz-form-control>
