@@ -1,4 +1,4 @@
-export class UserShowingTop1numberDto {
+export class UserShowingTop10Dto {
     FullName: string;
     UserName: string;
     Count: number;

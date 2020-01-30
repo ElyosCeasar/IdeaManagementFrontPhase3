@@ -1,7 +1,7 @@
 <h2>برترین اعضا</h2>
 
 <!-- table grid 1-->
-<nz-table nzBordered [nzPageSize]="10" nzTitle="10 نفر برتر ایده ها">
+<nz-table nzBordered [nzPageSize]="10" nzTitle="10 نفر برتر ایده ها" #editRowTable [nzData]="gridData">
   <thead>
     <tr>
       <th nzWidth="7%">#</th>
@@ -9,34 +9,23 @@
       <th nzWidth="20%">نام کاربری</th>
       <th nzWidth="20%">تعداد ایده ها</th>
       <th nzWidth="20%">مجموع امتیاز ها</th>
-      <th nzWidth="13%">تعداد ایده های برنده</th>
     </tr>
   </thead>
   <tbody>
     <!-- 1 -->
-    <tr>
-      <td>1</td>
-      <td>احمد احمدی</td>
-      <td>ahmad55</td>
-      <td>28</td>
-      <td>9000</td>
-      <td>5</td>
-    </tr>
-    <!-- 2 -->
-    <tr>
-      <td>2</td>
-      <td>محمد موسوی</td>
-      <td>m_mosavi</td>
-      <td>22</td>
-      <td>6000</td>
-      <td>3</td>
+    <tr *ngFor="let item of editRowTable.data; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.FullName }}</td>
+      <td>{{ item.UserName }}</td>
+      <td>{{ item.Count }}</td>
+      <td>{{ item.PointsCount }}</td>
     </tr>
   </tbody>
 </nz-table>
 
 <hr style="border: 1px solid BLACK" />
 <!-- table grid 2-->
-<nz-table nzBordered [nzPageSize]="10" nzTitle="10 نفر برتر پیشنهاد ها">
+<nz-table nzBordered [nzPageSize]="10" nzTitle="10 نفر برتر پیشنهاد ها" #editRowTable2 [nzData]="gridData">
   <thead>
     <tr>
       <th nzWidth="7%">#</th>
@@ -48,20 +37,12 @@
   </thead>
   <tbody>
     <!-- 1 -->
-    <tr>
-      <td>1</td>
-      <td>احمد احمدی</td>
-      <td>ahmad55</td>
-      <td>28</td>
-      <td>9000</td>
-    </tr>
-    <!-- 2 -->
-    <tr>
-      <td>2</td>
-      <td>محمد موسوی</td>
-      <td>m_mosavi</td>
-      <td>22</td>
-      <td>6000</td>
+    <tr *ngFor="let item of editRowTable.data; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.FullName }}</td>
+      <td>{{ item.UserName }}</td>
+      <td>{{ item.Count }}</td>
+      <td>{{ item.PointsCount }}</td>
     </tr>
   </tbody>
 </nz-table>

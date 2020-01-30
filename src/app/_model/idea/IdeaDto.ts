@@ -1,4 +1,5 @@
 export class IdeaDto {
+    Id: number;
     Title: string;
     TotalPoints: number;
     FullName: string;

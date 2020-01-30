@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { UserForShowDto } from './../_model/user/UserForShowDto';
 import { UserChangeCommitteeFlagDto } from './../_model/user/UserChangeCommitteeFlagDto';
 import { FilterUserRequestDto } from './../_model/user/FilterUserRequestDto';
+import { UserShowingTop10Dto } from './../_model/user/UserShowingTop10Dto';
 
 
 
@@ -36,5 +37,12 @@ export class UserService {
     }
     FilterSerchingUsers(model: FilterUserRequestDto): Observable<UserForShowDto[]> {
         return this.http.post<UserForShowDto[]>(this.baseUrl + 'FilterSerching', model);
+    }
+
+    getTop10IdeaMaker(): Observable<UserShowingTop10Dto[]> {
+        return this.http.get<UserShowingTop10Dto[]>(this.baseUrl + 'GetTop10IdeaMaker');
+    }
+    getTop10CommentMaker(): Observable<UserShowingTop10Dto[]> {
+        return this.http.get<UserShowingTop10Dto[]>(this.baseUrl + 'GetTop10CommentMaker');
     }
 }
