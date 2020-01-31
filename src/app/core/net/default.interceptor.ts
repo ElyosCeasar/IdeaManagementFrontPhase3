@@ -14,6 +14,7 @@ import { NzMessageService, NzNotificationService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { environment } from '@env/environment';
 import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
+import { AlertifyService } from './../../_services/alertify.service';
 
 const CODEMESSAGE = {
   200: '服务器成功返回请求的数据。',
@@ -38,7 +39,7 @@ const CODEMESSAGE = {
  */
 @Injectable()
 export class DefaultInterceptor implements HttpInterceptor {
-  constructor(private injector: Injector) { }
+  constructor(private injector: Injector, private alertifyService: AlertifyService) { }
 
   private get notification(): NzNotificationService {
     return this.injector.get(NzNotificationService);
@@ -54,7 +55,8 @@ export class DefaultInterceptor implements HttpInterceptor {
     }
 
     const errortext = CODEMESSAGE[ev.status] || ev.statusText;
-    this.notification.error(`请求错误 ${ev.status}: ${ev.url}`, errortext);
+    // this.notification.error(`请求错误 ${ev.status}: ${ev.url}`, errortext);
+    this.alertifyService.error(`请求错误 ${ev.status}: ${ev.url}` + errortext);
   }
 
   private handleData(ev: HttpResponseBase): Observable<any> {
@@ -79,7 +81,7 @@ export class DefaultInterceptor implements HttpInterceptor {
       case 500:
 
 
-        this.notification.error(`خطا`, ev.status + "");
+        this.alertifyService.error(`خطا : ` + ev.status + "");
         return throwError(ev);
 
         break;
@@ -87,7 +89,7 @@ export class DefaultInterceptor implements HttpInterceptor {
         // our errors
         if (ev instanceof HttpErrorResponse) {
 
-          this.notification.error(`حطا`, ev.error);
+          this.alertifyService.error(`حطا : ` + ev.error);
           return throwError(ev);
         }
         break;
@@ -95,7 +97,7 @@ export class DefaultInterceptor implements HttpInterceptor {
         if (ev instanceof HttpErrorResponse) {
 
 
-          this.notification.error(`خطای ناشناخته`, ev.status + "");
+          this.alertifyService.error(`خطای ناشناخته : ` + "مشکل در ارتباط با سرور کد " + ev.status);
           return throwError(ev);
         }
         break;

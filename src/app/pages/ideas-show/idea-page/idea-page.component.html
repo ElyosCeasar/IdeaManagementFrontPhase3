@@ -3,20 +3,37 @@
     <div class="ant-back-top-inner">UP</div>
   </ng-template>
 </nz-back-top> -->
+
+<h2 style="margin-bottom: 25px">ایده :</h2>
 <div class="parts">
   <form class="col-24" nz-form role="form" [formGroup]="topForm">
     <!-- row 1 -->
     <div nz-row [nzGutter]="4">
       <!-- 1 -->
-      <div nz-col nzSpan="4"></div>
+      <div nz-col nzSpan="4">
+        <button
+          *ngIf="checkCanDoOperation(idea.Username)"
+          nz-button
+          style="margin-top: 10px;margin-right: 10px; color:white;background-color: red;"
+          nzShape="circle"
+          (click)="deleteIdea(idea.Id)"
+        >
+          <i nz-icon nzType="delete" nzTheme="outline"></i>
+        </button>
+      </div>
       <!-- 2 -->
       <div nz-col nzSpan="4">
-        <div class="member-box " style="margin-top: 10px;">احمد صفوی</div>
+        <div class="member-box " style="margin-top: 10px;">نام : {{ idea.FullName }}</div>
+      </div>
+      <div nz-col nzSpan="4">
+        <div class="member-box " style="margin-top: 10px;">نام کاربری : {{ idea.Username }}</div>
       </div>
       <!-- 3 -->
-      <div nz-col nzSpan="10"></div>
+      <div nz-col nzSpan="6"></div>
       <div nz-col nzSpan="4">
-        <div class="score-board"><span>تعداد آرا </span> : <span>25</span></div>
+        <div class="score-board">
+          <span>تعداد آرا </span> : <span>{{ idea.POINT }}</span>
+        </div>
       </div>
     </div>
     <!-- row 1 -->
@@ -27,7 +44,7 @@
             عنوان
           </nz-form-label>
           <nz-form-control [nzSm]="10" [nzXs]="24">
-            <input [disabled]="true" nz-input formControlName="title" />
+            <input class="formItemColor" [disabled]="true" nz-input formControlName="title" [ngModel]="idea.Title" />
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -41,9 +58,11 @@
           <nz-form-control [nzSm]="18" [nzXs]="24">
             <textarea
               [disabled]="true"
+              class="formItemColor"
               nz-input
               formControlName="current_situation"
               [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              [ngModel]="idea.CurrentSituation"
             ></textarea>
           </nz-form-control>
         </nz-form-item>
@@ -58,9 +77,11 @@
           <nz-form-control [nzSm]="18" [nzXs]="24">
             <textarea
               [disabled]="true"
+              class="formItemColor"
               nz-input
               formControlName="prerequisite"
               [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              [ngModel]="idea.Prerequisite"
             ></textarea>
           </nz-form-control>
         </nz-form-item>
@@ -75,9 +96,11 @@
           <nz-form-control [nzSm]="18" [nzXs]="24">
             <textarea
               [disabled]="true"
+              class="formItemColor"
               nz-input
               formControlName="steps"
               [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              [ngModel]="idea.Steps"
             ></textarea>
           </nz-form-control>
         </nz-form-item>
@@ -92,9 +115,11 @@
           <nz-form-control [nzSm]="18" [nzXs]="24">
             <textarea
               [disabled]="true"
+              class="formItemColor"
               nz-input
               formControlName="advantages"
               [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              [ngModel]="idea.Advantages"
             ></textarea>
           </nz-form-control>
         </nz-form-item>
@@ -119,25 +144,50 @@
       <div nz-col nzSpan="2">
         <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
       </div>
+      <!-- 4 -->
+      <div nz-col nzSpan="4"></div>
+      <!-- 5 -->
+
+      <div nz-col nzSpan="4">
+        <div class="score-board">
+          <span>تاریخ ارسال </span> : <span>{{ idea.SAVE_DATE }}</span>
+        </div>
+      </div>
     </div>
   </form>
 </div>
 
-<!-- comment 1 -->
-<div class="parts">
+<!-- comment part -->
+<h2 style="margin-bottom: 25px" *ngIf="IdeaCommentsDto?.length > 0">پیشنهادات اصلاح :</h2>
+<div class="parts" *ngFor="let item of IdeaCommentsDto; let i = index">
   <form class="col-24" nz-form role="form" [formGroup]="topForm">
     <!-- row 1 -->
     <div nz-row [nzGutter]="4">
       <!-- 1 -->
-      <div nz-col nzSpan="4"></div>
+      <div nz-col nzSpan="4">
+        <button
+          *ngIf="checkCanDoOperation(item.Username)"
+          nz-button
+          style="margin-top: 10px;margin-right: 10px; color:white;background-color: red;"
+          nzShape="circle"
+          (click)="deleteComment(item.Id)"
+        >
+          <i nz-icon nzType="delete" nzTheme="outline"></i>
+        </button>
+      </div>
       <!-- 2 -->
       <div nz-col nzSpan="4">
-        <div class="member-box " style="margin-top: 10px;">محمد مظفری</div>
+        <div class="member-box " style="margin-top: 10px;">نام : {{ item.FullName }}</div>
+      </div>
+      <div nz-col nzSpan="4">
+        <div class="member-box " style="margin-top: 10px;">نام کاربری : {{ item.Username }}</div>
       </div>
       <!-- 3 -->
-      <div nz-col nzSpan="10"></div>
+      <div nz-col nzSpan="6"></div>
       <div nz-col nzSpan="4">
-        <div class="score-board"><span>تعداد آرا </span> : <span>3</span></div>
+        <div class="score-board">
+          <span>تعداد آرا </span> : <span>{{ item.Points }}</span>
+        </div>
       </div>
     </div>
     <!-- row 2 -->
@@ -149,9 +199,11 @@
           <nz-form-control [nzSm]="18" [nzXs]="24">
             <textarea
               [disabled]="true"
+              class="formItemColor"
               nz-input
               formControlName="current_situation"
               [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+              [ngModel]="idea.Comment"
             ></textarea>
           </nz-form-control>
         </nz-form-item>
@@ -170,107 +222,14 @@
       <div nz-col nzSpan="2">
         <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
       </div>
-    </div>
-  </form>
-</div>
-
-<!-- comment 2 -->
-<div class="parts">
-  <form class="col-24" nz-form role="form" [formGroup]="topForm">
-    <!-- row 1 -->
-    <div nz-row [nzGutter]="4">
-      <!-- 1 -->
+      <!-- 4 -->
       <div nz-col nzSpan="4"></div>
-      <!-- 2 -->
-      <div nz-col nzSpan="4">
-        <div class="member-box " style="margin-top: 10px;">حامد مولایی</div>
-      </div>
-      <!-- 3 -->
-      <div nz-col nzSpan="10"></div>
-      <div nz-col nzSpan="4">
-        <div class="score-board"><span>تعداد آرا </span> : <span>1</span></div>
-      </div>
-    </div>
-    <!-- row 2 -->
-    <div nz-row [nzGutter]="4">
-      <!-- 1 -->
-      <div nz-col nzSpan="24">
-        <nz-form-item>
-          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="current_situation">شرح</nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24">
-            <textarea
-              [disabled]="true"
-              nz-input
-              formControlName="current_situation"
-              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
-            ></textarea>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </div>
+      <!-- 5 -->
 
-    <!-- row 6 -->
-    <div nz-row [nzGutter]="4">
-      <!-- 1 -->
-      <div nz-col nzSpan="10"></div>
-      <!-- 2 -->
-      <div nz-col nzSpan="2">
-        <a class="mybuttons" nz-button style="background-color: olive;">رای مثبت</a>
-      </div>
-      <!-- 3 -->
-      <div nz-col nzSpan="2">
-        <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
-      </div>
-    </div>
-  </form>
-</div>
-
-<!-- comment 1 -->
-<div class="parts">
-  <form class="col-24" nz-form role="form" [formGroup]="topForm">
-    <!-- row 1 -->
-    <div nz-row [nzGutter]="4">
-      <!-- 1 -->
-      <div nz-col nzSpan="4"></div>
-      <!-- 2 -->
       <div nz-col nzSpan="4">
-        <div class="member-box " style="margin-top: 10px;">تقی تقوی</div>
-      </div>
-      <!-- 3 -->
-      <div nz-col nzSpan="10"></div>
-      <div nz-col nzSpan="4">
-        <div class="score-board"><span>تعداد آرا </span> : <span>-5</span></div>
-      </div>
-    </div>
-    <!-- row 2 -->
-    <div nz-row [nzGutter]="4">
-      <!-- 1 -->
-      <div nz-col nzSpan="24">
-        <nz-form-item>
-          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="current_situation">شرح</nz-form-label>
-          <nz-form-control [nzSm]="18" [nzXs]="24">
-            <textarea
-              [disabled]="true"
-              nz-input
-              formControlName="current_situation"
-              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
-            ></textarea>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-    </div>
-
-    <!-- row 6 -->
-    <div nz-row [nzGutter]="4">
-      <!-- 1 -->
-      <div nz-col nzSpan="10"></div>
-      <!-- 2 -->
-      <div nz-col nzSpan="2">
-        <a class="mybuttons" nz-button style="background-color: olive;">رای مثبت</a>
-      </div>
-      <!-- 3 -->
-      <div nz-col nzSpan="2">
-        <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
+        <div class="score-board">
+          <span>تاریخ ارسال </span> : <span>{{ idea.SAVE_DATE }}</span>
+        </div>
       </div>
     </div>
   </form>

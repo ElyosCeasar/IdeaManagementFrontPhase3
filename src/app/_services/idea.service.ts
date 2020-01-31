@@ -8,6 +8,8 @@ import { WinnerIdeaForShowDto } from './../_model/idea/WinnerIdeaForShowDto';
 import { NewIdeaDto } from './../_model/idea/NewIdeaDto';
 import { IdeaForShowDto } from './../_model/idea/IdeaForShowDto';
 import { FilterIdeaRequestDto } from './../_model/idea/FilterIdeaRequestDto';
+import { IdeaStatusDto } from './../_model/idea/IdeaStatusDto';
+import { IdeaDetailForShowDto } from './../_model/idea/IdeaDetailForShowDto';
 
 
 
@@ -51,5 +53,18 @@ export class IdeaService {
     }
     filterSerchingIdea(model: FilterIdeaRequestDto): Observable<IdeaForShowDto[]> {
         return this.http.post<IdeaForShowDto[]>(this.baseUrl + 'FilterSerchingIdea', model);
+    }
+    getAllIdeaStatus(): Observable<IdeaStatusDto[]> {
+        return this.http.get<IdeaStatusDto[]>(this.baseUrl + 'GetAllIdeaStatus');
+    }
+    getSpecificIdea(ideaId: number): Observable<IdeaDetailForShowDto> {
+        return this.http.get<IdeaDetailForShowDto>(this.baseUrl + 'GetSpecificIdea/' + ideaId);
+    }
+
+    getAllNotDecidedIdea(): Observable<IdeaForShowDto[]> {
+        return this.http.get<IdeaForShowDto[]>(this.baseUrl + 'GetAllNotDecidedIdea/');
+    }
+    getAllCurrentMontDecidedIdea(): Observable<IdeaForShowDto[]> {
+        return this.http.get<IdeaForShowDto[]>(this.baseUrl + 'GetAllCurrentMontDecidedIdea/');
     }
 }

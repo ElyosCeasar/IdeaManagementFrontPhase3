@@ -7,6 +7,7 @@ export class IdeaDetailForShowDto {
     CurrentSituation: string;
     Prerequisite: string;
     Steps: string;
+    Title: string;
     Advantages: string;
     SAVE_DATE: string;
     POINT: number;

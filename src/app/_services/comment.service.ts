@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { IdeaCommentsDto } from './../_model/comment/IdeaCommentsDto';
 
 
 
@@ -18,6 +19,10 @@ export class CommentService {
         } else {
             this.baseUrl = environment.apiUrl + 'Comments/';
         }
+    }
+
+    getSpecificIdea(ideaId: number): Observable<IdeaCommentsDto[]> {
+        return this.http.get<IdeaCommentsDto[]>(this.baseUrl + 'GetAllComments/' + ideaId);
     }
 
 

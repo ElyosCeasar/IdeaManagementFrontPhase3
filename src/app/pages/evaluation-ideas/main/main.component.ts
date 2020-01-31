@@ -2,6 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { _HttpClient, ModalHelper } from '@delon/theme';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ShowIdeasComponent } from './../show-ideas/show-ideas.component';
+import { AlertifyService } from './../../../_services/alertify.service';
+import { AuthService } from './../../../_services/auth.service';
+import { Router } from '@angular/router';
+import { IdeaService } from './../../../_services/idea.service';
+import { IdeaForShowDto } from './../../../_model/idea/IdeaForShowDto';
 
 
 
@@ -17,11 +22,48 @@ export class EvaluationIdeasMainComponent implements OnInit {
     month: new FormControl(),
 
   });
+  years: number[] = [];
+  gridDataNotDecidedIdea: IdeaForShowDto[] = [];
+  gridDataCurrentMontDecidedIdea: IdeaForShowDto[] = [];
   // isVisible = false;
+  constructor(private ideaService: IdeaService, private router: Router, private authService: AuthService, private alertifyService: AlertifyService) { }
 
-  constructor() { }
+  ngOnInit() {
+    this.fillGridNotDecidedIdea();
+    this.fillGridCurrentMontDecidedIdea();
+    this.fillYears();
+  }
+  fillGridNotDecidedIdea() {
+    this.ideaService.getAllNotDecidedIdea().subscribe((data: IdeaForShowDto[]) => {
 
-  ngOnInit() { }
+      this.gridDataNotDecidedIdea = data;
+    },
+      (err) => {
+
+        alert('مشکل');
+      });
+
+  }
+  fillGridCurrentMontDecidedIdea() {
+    this.ideaService.getAllCurrentMontDecidedIdea().subscribe((data: IdeaForShowDto[]) => {
+
+      this.gridDataCurrentMontDecidedIdea = data;
+    },
+      (err) => {
+
+        alert('مشکل');
+      });
+
+  }
+
+  fillYears() {
+    this.ideaService.getYearsFromLastIdea().subscribe((data: number[]) => {
+      this.years = data;
+    },
+      (err) => {
+        alert('مشکل');
+      });
+  }
 
 
   submit() {

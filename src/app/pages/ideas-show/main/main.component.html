@@ -20,6 +20,7 @@
         >
         <nz-form-control [nzXXl]="16" [nzXl]="15" [nzLg]="12" [nzMd]="10" [nzSm]="10" [nzXs]="24">
           <nz-select formControlName="month" nzShowSearch>
+            <nz-option nzLabel="همه‌ی ماه‌ها" [nzValue]="null"></nz-option>
             <nz-option nzLabel="1" [nzValue]="1"></nz-option>
             <nz-option nzLabel="2" [nzValue]="2"></nz-option>
             <nz-option nzLabel="3" [nzValue]="3"></nz-option>
@@ -37,6 +38,7 @@
       </nz-form-item>
     </div>
     <!-- 2-->
+
     <div nz-col nzSpan="6">
       <nz-form-item>
         <nz-form-label
@@ -53,8 +55,8 @@
         >
         <nz-form-control [nzXXl]="17" [nzXl]="15" [nzLg]="12" [nzMd]="10" [nzSm]="10" [nzXs]="24">
           <nz-select formControlName="year" nzShowSearch>
-            <nz-option nzLabel="1398" [nzValue]="1398"></nz-option>
-            <nz-option nzLabel="1397" [nzValue]="1397"></nz-option>
+            <nz-option nzLabel="همه‌ی سال‌ها" [nzValue]="null"></nz-option>
+            <nz-option *ngFor="let option of years" [nzLabel]="option" [nzValue]="option"></nz-option>
           </nz-select>
         </nz-form-control>
       </nz-form-item>
@@ -98,29 +100,30 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-    <!-- row 2 -->
-    <div nz-row [nzGutter]="4">
-      <!-- 1 -->
-      <div nz-col nzSpan="5">
-        <nz-form-item>
-          <nz-form-label
-            class="rtlm"
-            [nzXXl]="5"
-            [nzXl]="6"
-            [nzLg]="8"
-            [nzMd]="10"
-            [nzSm]="13"
-            [nzXs]="24"
-            [nzRequired]="false"
-            nzFor="title"
-            >عنوان</nz-form-label
-          >
-          <nz-form-control [nzXXl]="19" [nzXl]="18" [nzLg]="16" [nzMd]="14" [nzSm]="11" [nzXs]="24">
-            <input nz-input formControlName="title" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-          <!-- 2 -->
+  </div>
+  <!-- row 2 -->
+  <div nz-row [nzGutter]="4">
+    <!-- 1 -->
+    <div nz-col nzSpan="5">
+      <nz-form-item>
+        <nz-form-label
+          class="rtlm"
+          [nzXXl]="5"
+          [nzXl]="6"
+          [nzLg]="8"
+          [nzMd]="10"
+          [nzSm]="13"
+          [nzXs]="24"
+          [nzRequired]="false"
+          nzFor="title"
+          >عنوان</nz-form-label
+        >
+        <nz-form-control [nzXXl]="19" [nzXl]="18" [nzLg]="16" [nzMd]="14" [nzSm]="11" [nzXs]="24">
+          <input nz-input formControlName="title" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <!-- 2 -->
     <div nz-col nzSpan="5">
       <nz-form-item>
         <nz-form-label
@@ -132,55 +135,45 @@
           [nzSm]="14"
           [nzXs]="24"
           [nzRequired]="false"
-          nzFor="month"
+          nzFor="status_id"
           >وضعیت</nz-form-label
         >
         <nz-form-control [nzXXl]="16" [nzXl]="15" [nzLg]="12" [nzMd]="10" [nzSm]="10" [nzXs]="24">
-          <nz-select formControlName="month" nzShowSearch>
-            <nz-option nzLabel="1" [nzValue]="1"></nz-option>
-            <nz-option nzLabel="2" [nzValue]="2"></nz-option>
-            <nz-option nzLabel="3" [nzValue]="3"></nz-option>
-            <nz-option nzLabel="4" [nzValue]="4"></nz-option>
-            <nz-option nzLabel="5" [nzValue]="5"></nz-option>
-            <nz-option nzLabel="6" [nzValue]="6"></nz-option>
-            <nz-option nzLabel="7" [nzValue]="7"></nz-option>
-            <nz-option nzLabel="8" [nzValue]="8"></nz-option>
-            <nz-option nzLabel="9" [nzValue]="9"></nz-option>
-            <nz-option nzLabel="10" [nzValue]="10"></nz-option>
-            <nz-option nzLabel="11" [nzValue]="11"></nz-option>
-            <nz-option nzLabel="12" [nzValue]="12"></nz-option>
+          <nz-select formControlName="status_id" nzShowSearch>
+            <nz-option *ngFor="let option of statuses" [nzLabel]="option.Title" [nzValue]="option.Id"></nz-option>
           </nz-select>
         </nz-form-control>
       </nz-form-item>
     </div>
-      <!-- 3 -->
-      <div nz-col nzSpan="1"></div>
-      <!-- 4 -->
-      <div nz-col nzSpan="5">
-        <nz-form-item style="margin-top: 4px;">
-          <label nz-checkbox style="margin-top: 4px;">فقط ایده های من را نشان بده</label>
-        </nz-form-item>
-      </div>
+    <!-- 3 -->
+    <div nz-col nzSpan="1"></div>
+    <!-- 4 -->
+    <div nz-col nzSpan="5">
+      <nz-form-item style="margin-top: 4px;">
+        <label nz-checkbox style="margin-top: 4px;" formControlName="only_show_my_idea"
+          >فقط ایده های من را نشان بده</label
+        >
+      </nz-form-item>
+    </div>
 
-      <!-- 5-->
-      <div nz-col nzSpan="4">
-        <nz-form-item>
-          <nz-form-control [nzSpan]="14" [nzOffset]="6">
-            <button nz-button nzType="primary">جست و جو</button>
-          </nz-form-control>
-        </nz-form-item>
-      </div>
+    <!-- 5-->
+    <div nz-col nzSpan="4">
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary">جست و جو</button>
+        </nz-form-control>
+      </nz-form-item>
     </div>
   </div>
 </form>
 
 <!-- table grid 1-->
-<nz-table nzBordered [nzPageSize]="10">
+<nz-table nzBordered [nzPageSize]="10" #editRowTable [nzData]="gridData">
   <thead>
     <tr>
       <th nzWidth="8%">#</th>
       <th nzWidth="20%">موضوع ایده</th>
-      <th nzWidth="9%">تعداد رای ها</th>
+      <th nzWidth="9%">تعداد رای‌ها</th>
       <th nzWidth="18%">نام و نام خانوادگی طراح</th>
       <th nzWidth="18%">نام کاربری</th>
       <th nzWidth="8%">تاریخ مطرح شدن</th>
@@ -190,46 +183,27 @@
   </thead>
   <tbody>
     <!-- 1 -->
-    <tr>
-      <td>1</td>
-      <td>بهبود سیستم نمره دهی به کمک ارزیابی</td>
-      <td>1572</td>
-      <td>احمد احمدی</td>
-      <td>ahmad55</td>
-      <td>1398/02/05</td>
-      <td><span style="color: red;">رد شده</span></td>
-      <td>
-        <button nz-button nzType="primary" (click)="showIdeaPage('1')">
-          مشاهده
-        </button>
+    <tr *ngFor="let item of editRowTable.data; let i = index">
+      <td>{{ item.Id }}</td>
+      <td>{{ item.Title }}</td>
+      <td>{{ item.TotalPoints }}</td>
+      <td>{{ item.FullName }}</td>
+      <td>{{ item.Username }}</td>
+      <td>{{ item.SaveDate }}</td>
+      <td *ngIf="statuses === null || statuses.length === 0">
+        <span>{{ item.Status }}</span>
       </td>
-    </tr>
-    <!-- 2 -->
-    <tr>
-      <td>2</td>
-      <td>سیستم حضور غیاب به کمک کارت دانشجویی</td>
-      <td>1487</td>
-      <td>محمد موسوی</td>
-      <td>m_mosavi</td>
-      <td>1398/08/17</td>
-      <td style="color: green;">پذیرفته شده</td>
-      <td>
-        <button nz-button nzType="primary" (click)="showIdeaPage('1')">
-          مشاهده
-        </button>
+      <td *ngIf="!(statuses === null || statuses.length === 0) && item.StatusId === 2">
+        <span style="color: red;">{{ item.Status }}</span>
       </td>
-    </tr>
-    <!-- 1 -->
-    <tr>
-      <td>3</td>
-      <td>افزایش سرعت اینترنت</td>
-      <td>372</td>
-      <td>احمد احمدی</td>
-      <td>ahmad55</td>
-      <td>1398/10/05</td>
-      <td><span style="color: orange;">بررسی نشده</span></td>
+      <td style="color: green;" *ngIf="!(statuses === null || statuses.length === 0) && item.StatusId === 1">
+        {{ item.Status }}
+      </td>
+      <td *ngIf="!(statuses === null || statuses.length === 0) && item.StatusId === 0">
+        <span style="color: rgb(236, 155, 4);">{{ item.Status }}</span>
+      </td>
       <td>
-        <button nz-button nzType="primary" (click)="showIdeaPage('1')">
+        <button nz-button nzType="primary" (click)="showIdeaPage(item.Id)">
           مشاهده
         </button>
       </td>

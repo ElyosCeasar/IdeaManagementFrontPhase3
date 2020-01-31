@@ -17,7 +17,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { IdeasShowRoutingModule } from './ideas-show-routing.module';
 import { IdeaPageComponent } from './idea-page/idea-page.component'
 import { NzBackTopModule } from 'ng-zorro-antd/back-top';
-
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @NgModule({
   declarations: [IdeasShowMainComponent, IdeaPageComponent],
@@ -32,6 +32,7 @@ import { NzBackTopModule } from 'ng-zorro-antd/back-top';
     NzTableModule,
     NzBackTopModule,
     NzCheckboxModule,
+    NzToolTipModule,
     SharedModule,
     IdeasShowRoutingModule
   ]
