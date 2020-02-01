@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { VoteDetailDto } from './../_model/committee/VoteDetailDto';
 
 
 
@@ -19,6 +20,11 @@ export class CommitteeService {
             this.baseUrl = environment.apiUrl + 'Committee/';
         }
     }
-
+    VoteToIdea(ideaId: number, model: VoteDetailDto) {
+        return this.http.post(this.baseUrl + 'VoteToIdea/' + ideaId, model);
+    }
+    UnVoteIdea(ideaId: number) {
+        return this.http.delete(this.baseUrl + 'UnVoteIdea/' + ideaId);
+    }
 
 }

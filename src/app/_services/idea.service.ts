@@ -10,6 +10,7 @@ import { IdeaForShowDto } from './../_model/idea/IdeaForShowDto';
 import { FilterIdeaRequestDto } from './../_model/idea/FilterIdeaRequestDto';
 import { IdeaStatusDto } from './../_model/idea/IdeaStatusDto';
 import { IdeaDetailForShowDto } from './../_model/idea/IdeaDetailForShowDto';
+import { FilterAllNotDecidedIdeaRequestDto } from './../_model/idea/FilterAllNotDecidedIdeaRequestDto';
 
 
 
@@ -66,5 +67,9 @@ export class IdeaService {
     }
     getAllCurrentMontDecidedIdea(): Observable<IdeaForShowDto[]> {
         return this.http.get<IdeaForShowDto[]>(this.baseUrl + 'GetAllCurrentMontDecidedIdea/');
+    }
+
+    filterAllNotDecidedIdea(model: FilterAllNotDecidedIdeaRequestDto): Observable<IdeaForShowDto[]> {
+        return this.http.post<IdeaForShowDto[]>(this.baseUrl + 'FilterAllNotDecidedIdea', model);
     }
 }

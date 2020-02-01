@@ -7,6 +7,9 @@ import { AuthService } from './../../../_services/auth.service';
 import { Router } from '@angular/router';
 import { IdeaService } from './../../../_services/idea.service';
 import { IdeaForShowDto } from './../../../_model/idea/IdeaForShowDto';
+import { FilterAllNotDecidedIdeaRequestDto } from './../../../_model/idea/FilterAllNotDecidedIdeaRequestDto';
+import { CommitteeService } from './../../../_services/committee.service';
+import { VoteDetailDto } from './../../../_model/committee/VoteDetailDto';
 
 
 
@@ -26,7 +29,7 @@ export class EvaluationIdeasMainComponent implements OnInit {
   gridDataNotDecidedIdea: IdeaForShowDto[] = [];
   gridDataCurrentMontDecidedIdea: IdeaForShowDto[] = [];
   // isVisible = false;
-  constructor(private ideaService: IdeaService, private router: Router, private authService: AuthService, private alertifyService: AlertifyService) { }
+  constructor(private ideaService: IdeaService, private committeeService: CommitteeService, private router: Router, private authService: AuthService, private alertifyService: AlertifyService) { }
 
   ngOnInit() {
     this.fillGridNotDecidedIdea();
@@ -46,7 +49,6 @@ export class EvaluationIdeasMainComponent implements OnInit {
   }
   fillGridCurrentMontDecidedIdea() {
     this.ideaService.getAllCurrentMontDecidedIdea().subscribe((data: IdeaForShowDto[]) => {
-
       this.gridDataCurrentMontDecidedIdea = data;
     },
       (err) => {
@@ -67,8 +69,18 @@ export class EvaluationIdeasMainComponent implements OnInit {
 
 
   submit() {
-    console.log(this.topForm);
+    console.log(this.topForm.value);
+    const model = new FilterAllNotDecidedIdeaRequestDto();
+    model.Month = this.topForm.value.month;
+    model.Year = this.topForm.value.year;
+    this.ideaService.filterAllNotDecidedIdea(model).subscribe((data: IdeaForShowDto[]) => {
+      this.gridDataNotDecidedIdea = data;
+    },
+      (err) => {
+        alert('مشکل');
+      });
   }
+
 
   // showModal(id: number): void {
   //   this.isVisible = true;
@@ -87,5 +99,41 @@ export class EvaluationIdeasMainComponent implements OnInit {
     this.showIdeasComponent.changeVisiblety(id);
 
   }
+  accept(ideaId: number) {
+    const model = new VoteDetailDto();
+    model.Vote = 1;
+    model.ProfitAmount = 8;
+    model.SavingResourceAmount = 8;
+    this.committeeService.VoteToIdea(ideaId, model).subscribe((data) => {
+      this.alertifyService.success(data + "");
+      this.fillGridNotDecidedIdea();
+      this.fillGridCurrentMontDecidedIdea();
+    },
+      (err) => {
+        alert('مشکل');
+      });
+  }
+  reject(ideaId: number) {
+    const model = new VoteDetailDto();
+    model.Vote = 2;
+    this.committeeService.VoteToIdea(ideaId, model).subscribe((data: IdeaForShowDto[]) => {
+      this.alertifyService.success(data + "");
+      this.fillGridNotDecidedIdea();
+      this.fillGridCurrentMontDecidedIdea();
+    },
+      (err) => {
+        alert('مشکل');
+      });
+  }
+  unVote(ideaId: number) {
 
+    this.committeeService.UnVoteIdea(ideaId).subscribe((data: IdeaForShowDto[]) => {
+      this.alertifyService.success(data + "");
+      this.fillGridNotDecidedIdea();
+      this.fillGridCurrentMontDecidedIdea();
+    },
+      (err) => {
+        alert('مشکل');
+      });
+  }
 }
