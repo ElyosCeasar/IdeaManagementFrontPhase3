@@ -132,17 +132,36 @@
       <div nz-col nzSpan="4"></div>
       <!-- 5 -->
       <div nz-col nzSpan="3">
-        <a class="mybuttons" nz-button style="background-color: darkorange ">ارسال پیشنهاد</a>
+        <a class="mybuttons" nz-button style="background-color: darkorange " *ngIf="!checkCanDoOperation(idea.Username)"
+          >ارسال پیشنهاد</a
+        >
+        <a class="mybuttons" nz-button style="background-color: darkorange " *ngIf="checkCanDoOperation(idea.Username)"
+          >ویرایش ایده</a
+        >
       </div>
       <!-- 1 -->
       <div nz-col nzSpan="3"></div>
       <!-- 2 -->
       <div nz-col nzSpan="2">
-        <a class="mybuttons" nz-button style="background-color: olive;">رای مثبت</a>
+        <a
+          class="mybuttons"
+          nz-button
+          style="background-color: olive;"
+          (click)="IdeaUpvote()"
+          *ngIf="!checkCanDoOperation(idea.Username)"
+          >رای مثبت</a
+        >
       </div>
       <!-- 3 -->
       <div nz-col nzSpan="2">
-        <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
+        <a
+          class="mybuttons"
+          nz-button
+          style="background-color: red; "
+          (click)="IdeaDownvote()"
+          *ngIf="!checkCanDoOperation(idea.Username)"
+          >رای منفی</a
+        >
       </div>
       <!-- 4 -->
       <div nz-col nzSpan="4"></div>
@@ -213,14 +232,36 @@
     <!-- row 6 -->
     <div nz-row [nzGutter]="4">
       <!-- 1 -->
-      <div nz-col nzSpan="10"></div>
+      <div nz-col nzSpan="4"></div>
+      <!-- 1 -->
+      <div nz-col nzSpan="3">
+        <a class="mybuttons" nz-button style="background-color: darkorange " *ngIf="checkCanDoOperation(item.Username)"
+          >ویرایش پیشنهاد</a
+        >
+      </div>
+      <!-- 1 -->
+      <div nz-col nzSpan="3"></div>
       <!-- 2 -->
       <div nz-col nzSpan="2">
-        <a class="mybuttons" nz-button style="background-color: olive;">رای مثبت</a>
+        <a
+          class="mybuttons"
+          nz-button
+          style="background-color: olive;"
+          (click)="commentUpvote(item.Id)"
+          *ngIf="!checkCanDoOperation(idea.Username)"
+          >رای مثبت</a
+        >
       </div>
       <!-- 3 -->
       <div nz-col nzSpan="2">
-        <a class="mybuttons" nz-button style="background-color: red; ">رای منفی</a>
+        <a
+          class="mybuttons"
+          nz-button
+          style="background-color: red; "
+          (click)="commentDownvote(item.Id)"
+          *ngIf="!checkCanDoOperation(idea.Username)"
+          >رای منفی</a
+        >
       </div>
       <!-- 4 -->
       <div nz-col nzSpan="4"></div>
@@ -228,7 +269,7 @@
 
       <div nz-col nzSpan="4">
         <div class="score-board">
-          <span>تاریخ ارسال </span> : <span>{{ idea.SAVE_DATE }}</span>
+          <span>تاریخ ارسال </span> : <span>{{ item.SAVE_DATE }}</span>
         </div>
       </div>
     </div>

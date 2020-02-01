@@ -9,6 +9,7 @@ import { FilterIdeaRequestDto } from './../../../_model/idea/FilterIdeaRequestDt
 import { AlertifyService } from './../../../_services/alertify.service';
 import { IdeaForShowDto } from './../../../_model/idea/IdeaForShowDto';
 import { IdeaStatusDto } from './../../../_model/idea/IdeaStatusDto';
+import { IdeaPointDto } from './../../../_model/idea/IdeaPointDto';
 @Component({
   selector: 'app-ideas-show-main',
   templateUrl: './main.component.html',

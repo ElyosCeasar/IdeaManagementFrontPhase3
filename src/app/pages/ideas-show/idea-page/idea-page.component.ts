@@ -8,6 +8,8 @@ import { AlertifyService } from './../../../_services/alertify.service';
 import { IdeaDetailForShowDto } from './../../../_model/idea/IdeaDetailForShowDto';
 import { CommentService } from './../../../_services/comment.service';
 import { IdeaCommentsDto } from './../../../_model/comment/IdeaCommentsDto';
+import { IdeaPointDto } from './../../../_model/idea/IdeaPointDto';
+import { VoteToCommentDto } from './../../../_model/comment/VoteToCommentDto';
 
 
 @Component({
@@ -37,11 +39,12 @@ export class IdeaPageComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
+      // tslint:disable-next-line:no-string-literal
+      this.ideaId = params['id'];
 
-      // tslint:disable-next-line:no-string-literal
-      this.getIdea(params['id']);
-      // tslint:disable-next-line:no-string-literal
-      this.getAllComments(params['id']);
+      this.getIdea(this.ideaId);
+
+      this.getAllComments(this.ideaId);
     });
     // this.getIdea();
   }
@@ -99,5 +102,53 @@ export class IdeaPageComponent implements OnInit {
   }
   deleteComment(id) {
     console.log(id);
+  }
+  IdeaUpvote() {
+    const model = new IdeaPointDto();
+    model.IdeaId = this.ideaId;
+    model.Username = this.authService.getUsername();
+    model.Point = 1;
+    this.ideaService.voteToIdea(model).subscribe((data) => {
+      this.alertifyService.success(data + "");
+    },
+      (err) => {
+        alert('مشکل');
+      });
+  }
+  IdeaDownvote() {
+    const model = new IdeaPointDto();
+    model.IdeaId = this.ideaId;
+    model.Username = this.authService.getUsername();
+    model.Point = -1;
+    this.ideaService.voteToIdea(model).subscribe((data) => {
+      this.alertifyService.success(data + "");
+    },
+      (err) => {
+        alert('مشکل');
+      });
+  }
+  commentUpvote(commentId: number) {
+    const model = new VoteToCommentDto();
+    model.CommentId = commentId;
+    model.UsernameVoter = this.authService.getUsername();
+    model.Point = 1;
+    this.commentService.voteToComment(model).subscribe((data) => {
+      this.alertifyService.success(data + "");
+    },
+      (err) => {
+        alert('مشکل');
+      });
+  }
+  commentDownvote(commentId: number) {
+    const model = new VoteToCommentDto();
+    model.CommentId = commentId;
+    model.UsernameVoter = this.authService.getUsername();
+    model.Point = -1;
+    this.commentService.voteToComment(model).subscribe((data) => {
+      this.alertifyService.success(data + "");
+    },
+      (err) => {
+        alert('مشکل');
+      });
   }
 }
