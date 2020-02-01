@@ -94,9 +94,9 @@ export class EvaluationIdeasMainComponent implements OnInit {
   //   this.isVisible = false;
   // }
 
-  changeVisibletyOfModal(id) {
+  changeVisibletyOfModal(ideaId) {
 
-    this.showIdeasComponent.changeVisiblety(id);
+    this.showIdeasComponent.changeVisiblety(ideaId);
 
   }
   accept(ideaId: number) {

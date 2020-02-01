@@ -6,6 +6,9 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { IdeaDetailForShowDto } from './../../../_model/idea/IdeaDetailForShowDto';
+import { Router } from '@angular/router';
+import { IdeaService } from './../../../_services/idea.service';
 @Component({
   selector: 'app-show-ideas',
   templateUrl: './show-ideas.component.html',
@@ -24,11 +27,21 @@ export class ShowIdeasComponent implements OnInit {
   isVisible = false;
   showingComments = false;
   ideaId = -1;
-  constructor() { }
+  idea: IdeaDetailForShowDto = new IdeaDetailForShowDto();
+  constructor(private ideaService: IdeaService, private router: Router) { }
 
 
 
   ngOnInit() {
+  }
+  getIdea(ideaId: number) {
+    this.ideaService.getSpecificIdea(ideaId).subscribe((data: IdeaDetailForShowDto) => {
+      this.idea = data;
+    },
+      (err) => {
+
+        alert('مشکل');
+      });
   }
   showModal(id: number): void {
     this.isVisible = true;
@@ -43,15 +56,18 @@ export class ShowIdeasComponent implements OnInit {
   }
 
   handleShowComments() {
-    if (this.showingComments === true) {
+    // if (this.showingComments === true) {
 
-    } else {
+    // } else {
 
-    }
-    this.showingComments = !this.showingComments;
+    // }
+    // this.showingComments = !this.showingComments;
+    this.router.navigateByUrl('/ideas/show/speceficIdea/' + this.ideaId);
   }
   changeVisiblety(id) {
-    console.log(id);
+
+    this.ideaId = id;
+    this.getIdea(id);
     this.isVisible = !this.isVisible;
 
   }

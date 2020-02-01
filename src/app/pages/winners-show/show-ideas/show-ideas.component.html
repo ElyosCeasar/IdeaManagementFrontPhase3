@@ -16,7 +16,7 @@
               عنوان
             </nz-form-label>
             <nz-form-control [nzSm]="10" [nzXs]="24">
-              <input [disabled]="true" nz-input formControlName="title" />
+              <input [disabled]="true" nz-input formControlName="title" [ngModel]="idea.Title" class="formItemColor" />
             </nz-form-control>
           </nz-form-item>
         </div>
@@ -35,6 +35,8 @@
                 nz-input
                 formControlName="current_situation"
                 [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+                [ngModel]="idea.CurrentSituation"
+                class="formItemColor"
               ></textarea>
             </nz-form-control>
           </nz-form-item>
@@ -52,6 +54,8 @@
                 nz-input
                 formControlName="prerequisite"
                 [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+                [ngModel]="idea.Prerequisite"
+                class="formItemColor"
               ></textarea>
             </nz-form-control>
           </nz-form-item>
@@ -69,6 +73,8 @@
                 nz-input
                 formControlName="steps"
                 [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+                [ngModel]="idea.Steps"
+                class="formItemColor"
               ></textarea>
             </nz-form-control>
           </nz-form-item>
@@ -86,6 +92,8 @@
                 nz-input
                 formControlName="advantages"
                 [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+                [ngModel]="idea.Advantages"
+                class="formItemColor"
               ></textarea>
             </nz-form-control>
           </nz-form-item>
@@ -95,11 +103,12 @@
   </ng-template>
   <ng-template #modalFooter>
     <button nz-button nzType="primary" (click)="handleClose()">بستن</button>
-    <button nz-button nzType="difault" (click)="handleShowComments()" *ngIf="showingComments === true">
+    <!-- <button nz-button nzType="difault" (click)="handleShowComments()" *ngIf="showingComments === true">
       پنهان کردن کامنت ها
-    </button>
-    <button nz-button nzType="difault" (click)="handleShowComments()" *ngIf="showingComments === false">
-      دیدن کامنت ها
+    </button> -->
+    <button nz-button nzType="difault" (click)="handleShowComments()">
+      <!-- *ngIf="showingComments === false"> -->
+      رفتن به صفحه‌ی ایده‌ها برای دیدن پیشنهادها
     </button>
   </ng-template>
 </nz-modal>
