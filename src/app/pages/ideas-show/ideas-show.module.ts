@@ -18,10 +18,14 @@ import { IdeasShowRoutingModule } from './ideas-show-routing.module';
 import { IdeaPageComponent } from './idea-page/idea-page.component'
 import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { EditCommentModalComponent } from './edit-comment-modal/edit-comment-modal.component';
+import { EditIdeaModalComponent } from './edit-idea-modal/edit-idea-modal.component';
+import { SendCommentModalComponent } from './send-comment-modal/send-comment-modal.component';
 
 @NgModule({
-  declarations: [IdeasShowMainComponent, IdeaPageComponent],
+  declarations: [IdeasShowMainComponent, IdeaPageComponent, EditCommentModalComponent, EditIdeaModalComponent, SendCommentModalComponent],
   imports: [
+
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

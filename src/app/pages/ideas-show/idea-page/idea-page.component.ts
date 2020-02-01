@@ -10,6 +10,10 @@ import { CommentService } from './../../../_services/comment.service';
 import { IdeaCommentsDto } from './../../../_model/comment/IdeaCommentsDto';
 import { IdeaPointDto } from './../../../_model/idea/IdeaPointDto';
 import { VoteToCommentDto } from './../../../_model/comment/VoteToCommentDto';
+import { ChangedIdeaDto } from './../../../_model/idea/ChangedIdeaDto';
+import { EditIdeaModalComponent } from './../edit-idea-modal/edit-idea-modal.component';
+import { EditCommentModalComponent } from './../edit-comment-modal/edit-comment-modal.component';
+import { SendCommentModalComponent } from './../send-comment-modal/send-comment-modal.component';
 
 
 @Component({
@@ -18,6 +22,9 @@ import { VoteToCommentDto } from './../../../_model/comment/VoteToCommentDto';
   styleUrls: ['./idea-page.component.less']
 })
 export class IdeaPageComponent implements OnInit {
+  @ViewChild('editIdeaModal', { static: false }) editIdeaModalComponent: EditIdeaModalComponent;
+  @ViewChild('SendCommentModal', { static: false }) sendCommentModalComponent: SendCommentModalComponent;
+  @ViewChild('editCommentModal', { static: false }) editCommentModalComponent: EditCommentModalComponent;
   topForm = new FormGroup({
     title: new FormControl(),
     current_situation: new FormControl(),
@@ -26,11 +33,12 @@ export class IdeaPageComponent implements OnInit {
     advantages: new FormControl(),
 
   });
+
   isVisible = false;
   showingComments = false;
   ideaId = -1;
   idea: IdeaDetailForShowDto = new IdeaDetailForShowDto();
-  ttContent = "sdsd"
+
   Comments: IdeaCommentsDto[] = [];
   constructor(private activatedRoute: ActivatedRoute, private commentService: CommentService, private ideaService: IdeaService, private router: Router, private authService: AuthService, private alertifyService: AlertifyService) { }
 
@@ -44,13 +52,14 @@ export class IdeaPageComponent implements OnInit {
 
       this.getIdea(this.ideaId);
 
-      this.getAllComments(this.ideaId);
+      // this.getAllComments(this.ideaId);
     });
     // this.getIdea();
   }
   getIdea(ideaId: number) {
     this.ideaService.getSpecificIdea(ideaId).subscribe((data: IdeaDetailForShowDto) => {
       this.idea = data;
+      this.getAllComments(this.ideaId);
     },
       (err) => {
 
@@ -68,13 +77,13 @@ export class IdeaPageComponent implements OnInit {
   }
   showModal(id: number): void {
     this.isVisible = true;
-    console.log(id);
+
   }
 
 
 
   handleClose(): void {
-    console.log('Button close clicked!');
+
     this.isVisible = false;
   }
 
@@ -93,7 +102,7 @@ export class IdeaPageComponent implements OnInit {
   }
 
   checkCanDoOperation(Username: string) {
-    console.log(Username, this.authService.getUsername());
+
     return Username === this.authService.getUsername();
   }
 
@@ -110,6 +119,7 @@ export class IdeaPageComponent implements OnInit {
     model.Point = 1;
     this.ideaService.voteToIdea(model).subscribe((data) => {
       this.alertifyService.success(data + "");
+      this.getIdea(this.ideaId);
     },
       (err) => {
         alert('مشکل');
@@ -122,6 +132,7 @@ export class IdeaPageComponent implements OnInit {
     model.Point = -1;
     this.ideaService.voteToIdea(model).subscribe((data) => {
       this.alertifyService.success(data + "");
+      this.getIdea(this.ideaId);
     },
       (err) => {
         alert('مشکل');
@@ -134,6 +145,7 @@ export class IdeaPageComponent implements OnInit {
     model.Point = 1;
     this.commentService.voteToComment(model).subscribe((data) => {
       this.alertifyService.success(data + "");
+      this.getAllComments(this.ideaId);
     },
       (err) => {
         alert('مشکل');
@@ -146,9 +158,21 @@ export class IdeaPageComponent implements OnInit {
     model.Point = -1;
     this.commentService.voteToComment(model).subscribe((data) => {
       this.alertifyService.success(data + "");
+      this.getAllComments(this.ideaId);
     },
       (err) => {
         alert('مشکل');
       });
+  }
+
+  editIdea() {
+    this.editIdeaModalComponent.changeVisiblety(this.ideaId, this);
+  }
+  sendComment() {
+    this.sendCommentModalComponent.changeVisiblety(this.ideaId, this);
+  }
+
+  editComment(commentId) {
+    this.editCommentModalComponent.changeVisiblety(commentId, this.ideaId, this);
   }
 }

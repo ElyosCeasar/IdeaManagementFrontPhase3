@@ -132,10 +132,20 @@
       <div nz-col nzSpan="4"></div>
       <!-- 5 -->
       <div nz-col nzSpan="3">
-        <a class="mybuttons" nz-button style="background-color: darkorange " *ngIf="!checkCanDoOperation(idea.Username)"
+        <a
+          class="mybuttons"
+          nz-button
+          style="background-color: darkorange "
+          *ngIf="!checkCanDoOperation(idea.Username)"
+          (click)="sendComment()"
           >ارسال پیشنهاد</a
         >
-        <a class="mybuttons" nz-button style="background-color: darkorange " *ngIf="checkCanDoOperation(idea.Username)"
+        <a
+          class="mybuttons"
+          nz-button
+          style="background-color: darkorange "
+          *ngIf="checkCanDoOperation(idea.Username)"
+          (click)="editIdea()"
           >ویرایش ایده</a
         >
       </div>
@@ -177,9 +187,9 @@
 </div>
 
 <!-- comment part -->
-<h2 style="margin-bottom: 25px" *ngIf="IdeaCommentsDto?.length > 0">پیشنهادات اصلاح :</h2>
-<div class="parts" *ngFor="let item of IdeaCommentsDto; let i = index">
-  <form class="col-24" nz-form role="form" [formGroup]="topForm">
+<h2 style="margin-bottom: 25px" *ngIf="Comments?.length > 0">پیشنهادات اصلاح :</h2>
+<div class="parts" *ngFor="let item of Comments; let i = index">
+  <form class="col-24" nz-form role="form">
     <!-- row 1 -->
     <div nz-row [nzGutter]="4">
       <!-- 1 -->
@@ -214,16 +224,12 @@
       <!-- 1 -->
       <div nz-col nzSpan="24">
         <nz-form-item>
-          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="current_situation">شرح</nz-form-label>
+          <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="s7">شرح</nz-form-label>
+
           <nz-form-control [nzSm]="18" [nzXs]="24">
-            <textarea
-              [disabled]="true"
-              class="formItemColor"
-              nz-input
-              formControlName="current_situation"
-              [nzAutosize]="{ minRows: 5, maxRows: 12 }"
-              [ngModel]="idea.Comment"
-            ></textarea>
+            <textarea [disabled]="true" class="formItemColor" nz-input [nzAutosize]="{ minRows: 5, maxRows: 12 }">{{
+              item.Comment
+            }}</textarea>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -235,7 +241,12 @@
       <div nz-col nzSpan="4"></div>
       <!-- 1 -->
       <div nz-col nzSpan="3">
-        <a class="mybuttons" nz-button style="background-color: darkorange " *ngIf="checkCanDoOperation(item.Username)"
+        <a
+          class="mybuttons"
+          nz-button
+          style="background-color: darkorange "
+          (click)="editComment(item.Id)"
+          *ngIf="checkCanDoOperation(item.Username)"
           >ویرایش پیشنهاد</a
         >
       </div>
@@ -248,7 +259,7 @@
           nz-button
           style="background-color: olive;"
           (click)="commentUpvote(item.Id)"
-          *ngIf="!checkCanDoOperation(idea.Username)"
+          *ngIf="!checkCanDoOperation(item.Username)"
           >رای مثبت</a
         >
       </div>
@@ -259,7 +270,7 @@
           nz-button
           style="background-color: red; "
           (click)="commentDownvote(item.Id)"
-          *ngIf="!checkCanDoOperation(idea.Username)"
+          *ngIf="!checkCanDoOperation(item.Username)"
           >رای منفی</a
         >
       </div>
@@ -275,3 +286,7 @@
     </div>
   </form>
 </div>
+
+<app-edit-comment-modal #editCommentModal></app-edit-comment-modal>
+<app-send-comment-modal #SendCommentModal></app-send-comment-modal>
+<app-edit-idea-modal #editIdeaModal></app-edit-idea-modal>

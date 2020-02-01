@@ -35,4 +35,8 @@ export class CommentService {
     voteToComment(model: VoteToCommentDto) {
         return this.http.post(this.baseUrl + 'VoteToComment', model);
     }
+    getSpeceficComment(commentId: number): Observable<IdeaCommentsDto> {
+
+        return this.http.get<IdeaCommentsDto>(this.baseUrl + 'GetSpeceficComment/' + commentId);
+    }
 }

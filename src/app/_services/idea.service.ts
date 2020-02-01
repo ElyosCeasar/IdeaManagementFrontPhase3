@@ -78,7 +78,7 @@ export class IdeaService {
     voteToIdea(model: IdeaPointDto) {
         return this.http.post(this.baseUrl + 'VoteToIdea', model);
     }
-    editIdea(model: ChangedIdeaDto) {
-        return this.http.post(this.baseUrl + 'EditIdea', model);
+    editIdea(ideaId: number, model: ChangedIdeaDto) {
+        return this.http.put(this.baseUrl + 'EditIdea/' + ideaId, model);
     }
 }

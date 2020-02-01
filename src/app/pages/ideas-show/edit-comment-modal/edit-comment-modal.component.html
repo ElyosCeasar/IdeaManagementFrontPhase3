@@ -1,0 +1,38 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="جزئیات ایده"
+  nzWidth="1000"
+  (nzOnCancel)="handleClose()"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+>
+  <ng-template #modalContent>
+    <form class="col-24" nz-form role="form" [formGroup]="topForm">
+      <!-- row 5 -->
+      <div nz-row [nzGutter]="4">
+        <!-- 1 -->
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label [nzSm]="4" [nzXs]="24" nzRequired="false" nzFor="comment">متن پیشنهاد</nz-form-label>
+            <nz-form-control [nzSm]="18" [nzXs]="24">
+              <textarea
+                [disabled]="false"
+                nz-input
+                formControlName="comment"
+                [nzAutosize]="{ minRows: 5, maxRows: 12 }"
+                [ngModel]="comment.Comment"
+                class="formItemColor"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzType="primary" (click)="handleClose()">بستن</button>
+    <button class="saveButton" nz-button nzType="difault" (click)="handleSave()">
+      ذخیره شود
+    </button>
+  </ng-template>
+</nz-modal>
