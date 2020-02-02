@@ -33,9 +33,7 @@ export class AuthService {
                 if (token) {
 
                     localStorage.setItem('token', token);
-                    // this.decodedToken = this.jwtHelper.decodeToken(token);
-                    // console.log("ssdd", this.decodedToken);
-                    // console.log("ssdd", token);
+
                     const refreshIntervalId = setInterval(() => {
                         if (this.checkIfTokenIsExpired()) {
                             this.logOut();
@@ -70,6 +68,22 @@ export class AuthService {
             return this.jwtHelper.decodeToken(token).unique_name;
         } else {
             return '';
+        }
+    }
+    IsAdmin(): boolean {
+        const token = localStorage.getItem('token');
+        if (this.jwtHelper.decodeToken(token)) {
+            return this.jwtHelper.decodeToken(token).isAdmin;
+        } else {
+            return false;
+        }
+    }
+    IsCommitteeMember(): boolean {
+        const token = localStorage.getItem('token');
+        if (this.jwtHelper.decodeToken(token)) {
+            return this.jwtHelper.decodeToken(token).isCommitteeMember;
+        } else {
+            return false;
         }
     }
 

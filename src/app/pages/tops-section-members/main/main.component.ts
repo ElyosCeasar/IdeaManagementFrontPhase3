@@ -29,6 +29,7 @@ export class TopsSectionMembersMainComponent implements OnInit {
       });
     this.userService.getTop10CommentMaker().subscribe((data: UserShowingTop10Dto[]) => {
       this.gridDataTop10Comment = data;
+
     },
       (err) => {
         alert('مشکل');

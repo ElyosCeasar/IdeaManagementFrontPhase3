@@ -82,8 +82,8 @@ export class UserLoginComponent implements OnDestroy, OnInit {
     user.Username = this.userName.value;
 
     this.authService.login(user).subscribe(response => {
-      this.router.navigateByUrl('#/');
-
+      // this.router.navigateByUrl('#/');
+      window.location.reload();
     }, error => {
       console.log("er", error);
     });

@@ -10,6 +10,7 @@ import { I18NService } from '../i18n/i18n.service';
 import { NzIconService } from 'ng-zorro-antd';
 import { ICONS_AUTO } from '../../../style-icons-auto';
 import { ICONS } from '../../../style-icons';
+import { AuthService } from './../../_services/auth.service';
 
 /**
  * 用于应用启动时
@@ -26,6 +27,7 @@ export class StartupService {
     private aclService: ACLService,
     private titleService: TitleService,
     private httpClient: HttpClient,
+    private authService: AuthService
   ) {
     iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
   }
@@ -33,10 +35,18 @@ export class StartupService {
   load(): Promise<any> {
     // only works with promises
     // https://github.com/angular/angular/issues/15088
+    let menueAddress = 'assets/app-data'
+    if (this.authService.IsAdmin()) {
+      menueAddress += '-admin'
+    }
+    if (this.authService.IsCommitteeMember()) {
+      menueAddress += '-committee'
+    }
+    menueAddress += '.json'
     return new Promise(resolve => {
       zip(
         this.httpClient.get(`assets/i18n/${this.i18n.defaultLang}.json`),
-        this.httpClient.get('assets/app-data.json'),
+        this.httpClient.get(menueAddress),
       )
         .pipe(
           // 接收其他拦截器后产生的异常消息
@@ -65,7 +75,7 @@ export class StartupService {
             this.titleService.default = '';
             this.titleService.suffix = res.app.name;
           },
-          () => {},
+          () => { },
           () => {
             resolve(null);
           },

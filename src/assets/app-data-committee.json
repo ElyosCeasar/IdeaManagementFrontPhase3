@@ -61,6 +61,18 @@
               "i18n": "menu.winners.show"
             }
           ]
+        },
+        {
+          "text": "evaluation",
+          "i18n": "menu.evaluation",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "evaluation-ideas",
+              "link": "/evaluation/ideas",
+              "i18n": "menu.evaluation.ideas"
+            }
+          ]
         }
       ]
     }

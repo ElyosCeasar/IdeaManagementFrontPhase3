@@ -1,7 +1,7 @@
 <h2>برترین اعضا</h2>
 
 <!-- table grid 1-->
-<nz-table nzBordered [nzPageSize]="10" nzTitle="10 نفر برتر ایده ها" #editRowTable [nzData]="gridData">
+<nz-table nzBordered [nzPageSize]="10" nzTitle="10 نفر برتر ایده ها" #editRowTable [nzData]="gridDataTop10Idea">
   <thead>
     <tr>
       <th nzWidth="7%">#</th>
@@ -25,7 +25,7 @@
 
 <hr style="border: 1px solid BLACK" />
 <!-- table grid 2-->
-<nz-table nzBordered [nzPageSize]="10" nzTitle="10 نفر برتر پیشنهاد ها" #editRowTable2 [nzData]="gridData">
+<nz-table nzBordered [nzPageSize]="10" nzTitle="10 نفر برتر پیشنهاد ها" #editRowTable2 [nzData]="gridDataTop10Comment">
   <thead>
     <tr>
       <th nzWidth="7%">#</th>
@@ -37,7 +37,7 @@
   </thead>
   <tbody>
     <!-- 1 -->
-    <tr *ngFor="let item of editRowTable.data; let i = index">
+    <tr *ngFor="let item of editRowTable2.data; let i = index">
       <td>{{ i + 1 }}</td>
       <td>{{ item.FullName }}</td>
       <td>{{ item.UserName }}</td>

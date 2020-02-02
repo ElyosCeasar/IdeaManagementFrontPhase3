@@ -49,7 +49,6 @@
             }
           ]
         },
-
         {
           "text": "menu.winners",
           "i18n": "menu.winners",
@@ -59,6 +58,19 @@
               "text": "menu.winners.show",
               "link": "/winners/show",
               "i18n": "menu.winners.show"
+            }
+          ]
+        },
+
+        {
+          "text": "user-management",
+          "i18n": "menu.user-management",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "manage-committee-member",
+              "link": "/manage-committee-member",
+              "i18n": "menu.user-management.manage-committee-member"
             }
           ]
         }

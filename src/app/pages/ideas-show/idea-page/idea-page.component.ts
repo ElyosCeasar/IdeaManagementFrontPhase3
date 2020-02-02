@@ -69,6 +69,7 @@ export class IdeaPageComponent implements OnInit {
   getAllComments(ideaId: number) {
     this.commentService.getSpecificIdea(ideaId).subscribe((data: IdeaCommentsDto[]) => {
       this.Comments = data;
+      console.log(data)
     },
       (err) => {
 

@@ -45,4 +45,10 @@ export class UserService {
     getTop10CommentMaker(): Observable<UserShowingTop10Dto[]> {
         return this.http.get<UserShowingTop10Dto[]>(this.baseUrl + 'GetTop10CommentMaker');
     }
+    isAdmin(username: string): Observable<boolean> {
+        return this.http.get<boolean>(this.baseUrl + 'IsAdmin/' + username);
+    }
+    isCommitteMember(username: string): Observable<boolean> {
+        return this.http.get<boolean>(this.baseUrl + 'IsCommitteMember/' + username);
+    }
 }
