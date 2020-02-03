@@ -67,7 +67,7 @@ export class EditCommentModalComponent implements OnInit {
     model.Comment = this.topForm.value.comment;
     model.IdeaId = this.ideaId;
 
-    this.commentService.addCommentToIdea(model).subscribe((data) => {
+    this.commentService.updateComment(model).subscribe((data) => {
       this.alertifyService.success(data + "");
       this.that.getAllComments(this.ideaId);
 

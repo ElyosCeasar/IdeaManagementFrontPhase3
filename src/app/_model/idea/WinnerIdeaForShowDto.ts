@@ -1,4 +1,5 @@
 export class WinnerIdeaForShowDto {
+    IdeaId: number;
     TITLE: string;
     TotalPoints: number;
     FullName: string;

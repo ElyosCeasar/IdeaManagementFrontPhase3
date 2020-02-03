@@ -30,7 +30,7 @@ export class ForgetPasswordComponent implements OnDestroy, OnInit {
   }
   // #region fields
   get username() {
-    return this.form.controls.name;
+    return this.form.controls.username;
   }
   get name() {
     return this.form.controls.name;

@@ -32,7 +32,7 @@ export class UserRegisterComponent implements OnDestroy, OnInit {
   }
   // #region fields
   get username() {
-    return this.form.controls.name;
+    return this.form.controls.username;
   }
   get name() {
     return this.form.controls.name;
@@ -110,12 +110,14 @@ export class UserRegisterComponent implements OnDestroy, OnInit {
     }
 
     const data = this.form.value;
+
     let user = new UserForRegistrationDto();
     user.password = this.password.value;
     user.Username = this.username.value;
     user.Email = this.mail.value;
     user.FirstName = this.name.value;
     user.LastName = this.family_name.value;
+
     this.authService.register(user).subscribe(response => {
 
       this.router.navigateByUrl('/passport/register-result', {
