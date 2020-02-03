@@ -4,6 +4,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { UserService } from './../../../_services/user.service';
 import { UserForShowDto } from './../../../_model/user/UserForShowDto';
 import { FilterUserRequestDto } from './../../../_model/user/FilterUserRequestDto';
+import { Router } from '@angular/router';
+import { AuthService } from './../../../_services/auth.service';
+import { AlertifyService } from './../../../_services/alertify.service';
 
 
 @Component({
@@ -21,9 +24,12 @@ export class ManageCommitteeMemberMainComponent implements OnInit {
   });
   gridData: UserForShowDto[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    if (!this.authService.IsAdmin()) {
+      this.router.navigateByUrl('');
+    }
     this.fillGrid();
   }
   fillGrid() {

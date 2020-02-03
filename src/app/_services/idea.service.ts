@@ -81,4 +81,7 @@ export class IdeaService {
     editIdea(ideaId: number, model: ChangedIdeaDto) {
         return this.http.put(this.baseUrl + 'EditIdea/' + ideaId, model);
     }
+    deleteIdea(ideaId: number) {
+        return this.http.delete(this.baseUrl + 'DeleteIdea/' + ideaId);
+    }
 }

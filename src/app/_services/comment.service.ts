@@ -39,4 +39,7 @@ export class CommentService {
 
         return this.http.get<IdeaCommentsDto>(this.baseUrl + 'GetSpeceficComment/' + commentId);
     }
+    deleteComment(commentId: number) {
+        return this.http.delete(this.baseUrl + 'DeleteComment/' + commentId);
+    }
 }

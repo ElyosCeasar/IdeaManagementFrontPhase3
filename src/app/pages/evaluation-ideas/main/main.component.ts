@@ -32,6 +32,9 @@ export class EvaluationIdeasMainComponent implements OnInit {
   constructor(private ideaService: IdeaService, private committeeService: CommitteeService, private router: Router, private authService: AuthService, private alertifyService: AlertifyService) { }
 
   ngOnInit() {
+    if (!this.authService.IsCommitteeMember()) {
+      this.router.navigateByUrl('');
+    }
     this.fillGridNotDecidedIdea();
     this.fillGridCurrentMontDecidedIdea();
     this.fillYears();

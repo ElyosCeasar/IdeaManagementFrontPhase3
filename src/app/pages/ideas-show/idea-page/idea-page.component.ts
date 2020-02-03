@@ -58,8 +58,13 @@ export class IdeaPageComponent implements OnInit {
   }
   getIdea(ideaId: number) {
     this.ideaService.getSpecificIdea(ideaId).subscribe((data: IdeaDetailForShowDto) => {
-      this.idea = data;
-      this.getAllComments(this.ideaId);
+      if (data == null) {
+        this.alertifyService.error("به نظر می‌رسد ایده وجود ندارد");
+        this.router.navigateByUrl('/ideas/show');
+      } else {
+        this.idea = data;
+        this.getAllComments(this.ideaId);
+      }
     },
       (err) => {
 
@@ -68,8 +73,9 @@ export class IdeaPageComponent implements OnInit {
   }
   getAllComments(ideaId: number) {
     this.commentService.getSpecificIdea(ideaId).subscribe((data: IdeaCommentsDto[]) => {
+
       this.Comments = data;
-      console.log(data)
+
     },
       (err) => {
 
@@ -108,10 +114,18 @@ export class IdeaPageComponent implements OnInit {
   }
 
   deleteIdea(id) {
-    console.log(id);
+
+    this.ideaService.deleteIdea(id).subscribe((data) => {
+      this.alertifyService.success(data + "");
+      this.router.navigateByUrl('/ideas/show');
+    })
   }
   deleteComment(id) {
     console.log(id);
+    this.commentService.deleteComment(id).subscribe((data) => {
+      this.getAllComments(this.ideaId);
+      this.alertifyService.success(data + "")
+    })
   }
   IdeaUpvote() {
     const model = new IdeaPointDto();
