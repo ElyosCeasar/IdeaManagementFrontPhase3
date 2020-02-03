@@ -79,6 +79,7 @@ export class IdeasShowMainComponent implements OnInit {
 
     model.FullName = this.topForm.value.full_name;
     model.Year = this.topForm.value.year;
+    model.Month = this.topForm.value.month;
     model.MyUsername = this.authService.getUsername();
     model.Username = this.topForm.value.username;
     model.OnlyshowMyIdea = this.topForm.value.only_show_my_idea === null ? false : this.topForm.value.only_show_my_idea;

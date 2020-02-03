@@ -55,6 +55,7 @@ export class IdeaService {
         return this.http.get<IdeaForShowDto[]>(this.baseUrl + 'GetAllIdea');
     }
     filterSerchingIdea(model: FilterIdeaRequestDto): Observable<IdeaForShowDto[]> {
+        console.log("model", model);
         return this.http.post<IdeaForShowDto[]>(this.baseUrl + 'FilterSerchingIdea', model);
     }
     getAllIdeaStatus(): Observable<IdeaStatusDto[]> {

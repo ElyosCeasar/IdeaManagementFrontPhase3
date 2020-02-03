@@ -60,8 +60,11 @@
         >
         <nz-form-control [nzXXl]="19" [nzXl]="18" [nzLg]="16" [nzMd]="15" [nzSm]="12" [nzXs]="24">
           <nz-select style="width: 200px;" formControlName="position_type" nzShowSearch>
-            <nz-option nzLabel="عضو کمیته" [nzValue]="1"></nz-option>
+            <nz-option nzLabel="همه" [nzValue]="5"></nz-option>
             <nz-option nzLabel="کاربر معمولی" [nzValue]="0"></nz-option>
+            <nz-option nzLabel="عضو کمیته" [nzValue]="1"></nz-option>
+            <nz-option nzLabel="ادمین" [nzValue]="2"></nz-option>
+            <nz-option nzLabel="ادمین و عضو کمیته" [nzValue]="3"></nz-option>
           </nz-select>
         </nz-form-control>
       </nz-form-item>
